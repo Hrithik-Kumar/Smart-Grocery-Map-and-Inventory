@@ -1,5 +1,5 @@
 # Smart Grocery Map and Inventory
-## Motivation
+## Motivation and Project Description
 - In large stores, people often lack a convenient way to find all their goods. Without guidance around the place, shoppers always have to traverse the entire store just to find a small item. Most stores like Walmart or IKEA don't have a detailed map labeling every item or section. With this information missing, it could waste a lot of people's time when they search for multiple items at once. 
 - Our platform will help generate an optimal map based on a shopper's e-cart or grocery list that maps out the shortest path to get all their goods.
 - Team boundarybreakers will contribute its skills to create a mobile application that addresses the issue mentioned above.
