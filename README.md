@@ -11,9 +11,9 @@ install Smart Grocery Map Application
 ### Do you use Git Flow? 
 Yes, we will use the Git Flow model. 
 ### What do you name your branches? 
-main branch: containing the current working version
-develop branch: containing the current developing code that will be merged into the main branch
-feature-Name branches: containing newly made features branching off the develop branch. 
+- main branch: containing the current working version
+- develop branch: containing the current developing code that will be merged into the main branch
+- feature-Name branches: containing newly made features branching off the develop branch. 
 ### Do you use github issues or another ticketing website? 
 Github Issues, Discord, and Jira will be used to ticket issues.
 ### Do you use pull requests? 
