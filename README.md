@@ -14,6 +14,10 @@ flutter pub get
 ```sh
 flutter run lib/main.dart
 ```
+Technologies we use include: 
+1. [Flutter](https://flutter.dev/docs/get-started/install)
+2. sqflite: a Flutter plugin for SQLite
+3. [Java](https://www.java.com/en/download/manual.jsp)
 ## Contribution
 ### Do you use Git Flow? 
 Yes, we will use the Git Flow model. 
