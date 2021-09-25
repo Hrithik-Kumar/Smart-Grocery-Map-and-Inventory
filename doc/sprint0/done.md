@@ -1,4 +1,4 @@
-The following is thec list of requirements that the user story should adhere to for the team to call it complete.
+The following is the list of requirements that the user story should adhere to for the team to call it complete.
 
 1. Code peer reviewed for documentation and consistency purpose.
 2. The code refactoring is completed
