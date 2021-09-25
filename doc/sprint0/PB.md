@@ -7,7 +7,7 @@ CustLogIn:
 
 CustLogOut:
 
-	As Peter(a customer), I would like to log out my account when I want, so that I can prevent my personal information from being seen by others.
+	As Peter(a customer), I would like to log out of my account when I want, so that I can prevent my personal information from being seen by others.
 	
 	Related persona: Peter Walker 
 
@@ -35,7 +35,7 @@ CompanyLogIn:
 
 CompanyLogOut:
 
-	As Charles(a company manager), I would like to log out my account when I leave the app or when I want, so that I can get a record of what I have modified and prevent company information from leaking.
+	As Charles(a company manager), I would like to log out of my account when I leave the app or when I want, so that I can get a record of what I have modified and prevent company information from leaking.
 
 	Related persona: Charles Brown
 
