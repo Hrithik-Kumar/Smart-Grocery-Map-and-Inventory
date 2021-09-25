@@ -4,9 +4,16 @@
 - Our platform will help generate an optimal map based on a shopper's e-cart or grocery list that maps out the shortest path to get all their goods.
 - Team boundarybreakers will contribute its skills to create a mobile application that addresses the issue mentioned above.
 ## Installation
-### Apple Store / Google Play Store
-install Smart Grocery Map Application
-
+- [Download Flutter and setup your device](https://flutter.dev/docs/get-started/install)
+- cd into the smart_grocery_map directory and get the sqflite plugin
+```sh
+cd smart_grocery_map
+flutter pub get
+```
+- run the app
+```sh
+flutter run lib/main.dart
+```
 ## Contribution
 ### Do you use Git Flow? 
 Yes, we will use the Git Flow model. 
