@@ -5,7 +5,6 @@
 - Team boundarybreakers will contribute its skills to create a mobile application that addresses the issue mentioned above.
 ## Installation
 ### Apple Store / Google Play Store
-install Smart Grocery Map Application
 
 ## Contribution
 ### Do you use Git Flow? 
