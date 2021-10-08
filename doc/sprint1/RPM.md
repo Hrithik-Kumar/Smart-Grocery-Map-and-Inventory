@@ -1,6 +1,6 @@
 ## Document the meeting: 
 
- - The release planning meeting is held on Septemeber 19, 2021 by using discord. All of our team members attended the release planning meeting. In this meeting, we came up with the idea to do our own project 'smart grocery map' and determined its features with a simple prototype for the app. We also discuss our target users, future needs for store information, and how are we going to implement all the features. 
+ - The release planning meeting is held on Septemeber 19, 2021 by using Miscrosoft Teams. All of our team members attended the release planning meeting. In this meeting, we came up with the idea to do our own project 'smart grocery map' and determined its features with a simple prototype for the app. We also discuss our target users, future needs for store information, and how are we going to implement all the features. 
 
 ---
 
