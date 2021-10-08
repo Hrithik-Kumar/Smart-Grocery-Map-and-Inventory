@@ -3,7 +3,6 @@ from django.http import JsonResponse
 from django.views.decorators import csrf
 from .models import company
 from django.views.decorators.csrf import csrf_exempt
-from django.core.files.storage import FileSystemStorage
 from django.contrib.auth import authenticate
 
 # Create your views here.
