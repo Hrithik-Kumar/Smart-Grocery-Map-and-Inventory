@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartgrocery/screens/auth/welcome_screen.dart';
+import '/screens/auth/welcome_screen.dart';
 
 void main() {
   runApp(const MyApp());
