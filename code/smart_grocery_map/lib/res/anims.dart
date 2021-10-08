@@ -1,1 +1,0 @@
-const String basket = 'assets/anim/basket.json';

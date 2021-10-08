@@ -1,6 +1,0 @@
-.idea/*
-.dart_tool/
-.packages
-build/
-**/pubspec.lock
-*.pyc
