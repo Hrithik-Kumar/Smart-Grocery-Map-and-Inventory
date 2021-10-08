@@ -1,11 +1,12 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import '../../company_signup_screen.dart';
 import '/res/colors.dart';
 import '/res/styles.dart';
-import '/screens/auth/components/auth_button.dart';
-import '/screens/auth/components/text_input_field.dart';
+import 'components/auth_button.dart';
+import 'package:http/http.dart' as http;
+import 'components/text_input_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -25,6 +26,60 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
     _usernameController.dispose();
     _passwordController.dispose();
+  }
+
+  void _validate() {
+    if (_usernameController.text.isEmpty && _passwordController.text.isEmpty) {
+      _showSnackbar('Please enter your username and password');
+    } else if (_usernameController.text.isEmpty) {
+      _showSnackbar('Please enter your username');
+    } else if (_passwordController.text.isEmpty) {
+      _showSnackbar('Please enter your password');
+    } else {
+      _doLogin();
+    }
+  }
+
+  void _doLogin() async {
+    try {
+      // Url: http://localhost:8000/api/company/login
+      // For emulator: http://10.0.2.2:8000/api/company/login
+      var uri = Uri.parse('http://localhost:8000/api/company/login');
+      var request = http.MultipartRequest('POST', uri)
+        ..fields['username'] = _usernameController.text
+        ..fields['password'] = _passwordController.text;
+      http.Response response =
+          await http.Response.fromStream(await request.send());
+      if (response.statusCode == 200) {
+        // Success
+        _showSnackbar('Success');
+      } else if (response.statusCode == 400) {
+        _showSnackbar('username/password incorrect');
+      } else {
+        _showSnackbar('Failed to login');
+      }
+    } catch (e) {
+      _showSnackbar(e.toString());
+    }
+  }
+
+  void _navigateAndDisplaySelection() async {
+    // Navigator.push returns a Future that completes after calling
+    // Navigator.pop on the Selection Screen.
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const CompanySignUpScreen()),
+    );
+
+    // After the Selection Screen returns a result, hide any previous snackbars
+    // and show the new result.
+    _showSnackbar(result);
+  }
+
+  void _showSnackbar(String message) {
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override
@@ -57,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        'Log In',
+                        'Sign In',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 30.0,
@@ -81,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         textInputAction: TextInputAction.done,
                         icon: Icons.lock,
                         obscureText:
-                        suffixIcon == Icons.visibility_off ? true : false,
+                            suffixIcon == Icons.visibility_off ? true : false,
                         suffixIcon: suffixIcon,
                         onEyePressed: () {
                           setState(() {
@@ -93,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       _buildForgotPasswordBtn(),
                       AuthButton(
-                        onPressed: () {},
+                        onPressed: _validate,
                         text: 'Login',
                       ),
                       _buildSignupBtn(),
@@ -103,13 +158,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 Positioned(
                   child: SafeArea(
                     child: IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: Icon(
-                          Platform.isAndroid
-                              ? Icons.arrow_back
-                              : Icons.arrow_back_ios,
-                        ),
-                        color: Colors.white),
+                      onPressed: () => Navigator.pop(context),
+                      icon: Icon(
+                        Platform.isAndroid
+                            ? Icons.arrow_back
+                            : Icons.arrow_back_ios,
+                      ),
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
@@ -147,7 +203,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: _navigateAndDisplaySelection,
           child: const Text(
             'Sign Up',
             style: TextStyle(
