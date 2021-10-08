@@ -29,6 +29,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3001',
+]
 
 # Application definition
 
@@ -40,9 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'companySignUp.apps.CompanysignupConfig',
-]
 
 MIDDLEWARE = [
+    'corsheaders',
+    'companylogin.apps.CompanyloginConfig'
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

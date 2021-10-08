@@ -4,20 +4,34 @@
 - Our platform will help generate an optimal map based on a shopper's e-cart or grocery list that maps out the shortest path to get all their goods.
 - Team boundarybreakers will contribute its skills to create a mobile application that addresses the issue mentioned above.
 ## Installation
+Frontend
 - [Download Flutter and setup your device](https://flutter.dev/docs/get-started/install)
 - cd into the smart_grocery_map directory and get the sqflite plugin
 ```sh
-cd smart_grocery_map
-flutter pub get
+$ cd smart_grocery_map
+$ flutter pub get
 ```
 - run the app
 ```sh
-flutter run lib/main.dart
+$ flutter run -d chrome --web-port=3001 lib/main.dart
 ```
 Technologies we use include: 
 1. [Flutter](https://flutter.dev/docs/get-started/install)
 2. sqflite: a Flutter plugin for SQLite
 3. [Java](https://www.java.com/en/download/manual.jsp)
+
+Backend: To run the Django which connects to the SQLite database:
+- Have Python installed.
+- Install Django and Pillow
+```sh
+$ python -m pip install Django
+$ python -m pip install Pillow
+```
+- cd into backend and start the server
+```sh
+$ cd code/backend
+$ python manage.py runserver
+```
 ## Contribution
 ### Do you use Git Flow? 
 Yes, we will use the Git Flow model that uses multiple feature and main branches. 

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import companyProfile
+from django.views.decorators import csrf
 from .models import company
 from django.views.decorators.csrf import csrf_exempt
 

@@ -21,8 +21,7 @@ class companyProfile(models.Model):
     class Meta:
         db_table = 'company_profile'
 
-
-
+# Create your models here.
 class company(models.Model):
     username = models.CharField(max_length=20)
     password = models.CharField(max_length=80)
