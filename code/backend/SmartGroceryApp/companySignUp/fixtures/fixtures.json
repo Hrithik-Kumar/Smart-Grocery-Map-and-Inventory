@@ -36,7 +36,7 @@
         }
     },
     {
-        "model": "companyProfile.companyProfile",
+        "model": "companySignUp.companyProfile",
         "pk": 1,
         "fields": {
             "cid": 123456789,
@@ -50,7 +50,7 @@
         }
     },
     {
-        "model": "companyProfile.companyProfile",
+        "model": "companySignUp.companyProfile",
         "pk": 2,
         "fields": {
             "cid": 987654321,

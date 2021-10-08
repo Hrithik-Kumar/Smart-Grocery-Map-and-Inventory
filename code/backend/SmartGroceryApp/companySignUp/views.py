@@ -2,11 +2,12 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from .models import companyProfile
 from .models import company
+from django.views.decorators.csrf import csrf_exempt
 
 from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
-
+@csrf_exempt
 def company_sign_up(request):
     if request.method != 'POST':
         return JsonResponse({'status': 'did not recieve a POST request'}, status=403)
@@ -59,17 +60,18 @@ def company_sign_up(request):
 
     return JsonResponse({'status': 'success'}, status=201)
 
+@csrf_exempt
 def company_change_profile(request):
     if request.method != 'POST':
         return JsonResponse({'status': 'did not recieve a POST request'}, status=403)
 
-    cid = request.POST.get('id')
+    cid = request.POST.get('cid')
     description = request.POST.get('description')
     avg_review = request.POST.get('avg_review')
     open_time = request.POST.get('open_time')
     close_time = request.POST.get('close_time')
     contact_phone = request.POST.get('contact_phone')
-    contact_email = request.POST.get('company_email')
+    contact_email = request.POST.get('contact_email')
     website = request.POST.get('website')
 
     if cid is None:
