@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/screens/auth/welcome_screen.dart';
+//import '/screens/home/NavBar.dart';
 
 void main() {
   runApp(MyApp());
