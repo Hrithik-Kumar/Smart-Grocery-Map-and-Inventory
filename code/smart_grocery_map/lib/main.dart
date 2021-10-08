@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '/screens/auth/welcome_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Smart Grocery',
       debugShowCheckedModeBanner: false,
       home: WelcomeScreen(),
