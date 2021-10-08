@@ -17,6 +17,6 @@ def company_log_in(request):
     loginsuccess = authenticate(request,username=username,password=password)
     
     if loginsuccess is not None:     
-        return JsonResponse({'status': 'success'}, status=201)
+        return JsonResponse({'status': 'success'}, status=200)
     else: 
         return JsonResponse({'status': 'username/password incorrect'}, status=400)
