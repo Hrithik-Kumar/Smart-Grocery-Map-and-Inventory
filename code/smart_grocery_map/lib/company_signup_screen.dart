@@ -82,7 +82,8 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
             ],
           ),
         ),
-        child: Form(
+        height: queryData.size.height,
+        child: SingleChildScrollView (child:Form(
           key: _formKey,
           child: Padding(
             padding: EdgeInsets.symmetric(
@@ -288,7 +289,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
               ],
             ),
           ),
-        ),
+        ), ),
       ),
     );
   }
