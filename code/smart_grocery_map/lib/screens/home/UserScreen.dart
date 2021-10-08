@@ -10,8 +10,10 @@ class UserScreen extends StatelessWidget {
           horizontal: 20.0,
           vertical: 80.0,
         ),
-        child: Row(
+        child: const Text(
           
+        )
+        child: Row(
           children: <Widget>[
             Expanded(
               flex:1,
@@ -20,7 +22,7 @@ class UserScreen extends StatelessWidget {
                   Navigator.push(context, new MaterialPageRoute(builder: (context) => new ProfilePage()));
                 },
                 icon: Icon(Icons.local_convenience_store_rounded),
-                label: Text("Company Name\nClick to See Profile"),
+                label: Text("Company Name\nView Profile"),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.transparent,
                   onPrimary: Colors.black,
