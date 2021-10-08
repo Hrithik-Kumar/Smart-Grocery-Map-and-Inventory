@@ -2,10 +2,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:smartgrocery/res/colors.dart';
-import 'package:smartgrocery/res/styles.dart';
-import 'package:smartgrocery/screens/auth/components/auth_button.dart';
-import 'package:smartgrocery/screens/auth/components/text_input_field.dart';
+import '/res/colors.dart';
+import '/res/styles.dart';
+import '/screens/auth/components/auth_button.dart';
+import '/screens/auth/components/text_input_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

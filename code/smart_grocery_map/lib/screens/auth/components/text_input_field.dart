@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartgrocery/res/styles.dart';
+import '/res/styles.dart';
 
 class TextInputField extends StatelessWidget {
   final TextEditingController controller;
