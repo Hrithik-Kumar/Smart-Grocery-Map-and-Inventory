@@ -34,5 +34,33 @@
             "store_name": "Test Company 3",
             "store_location": "1234 Test3 Avenue"
         }
+    },
+    {
+        "model": "companySignUp.companyProfile",
+        "pk": 1,
+        "fields": {
+            "cid": 123456789,
+            "description": "Test Description 1",
+            "avg_review": 3,
+            "open_time": "9:00AM",
+            "close_time": "8:00PM",
+            "contact_phone": "123-456-7891",
+            "contact_email": "SampleEmail1@Email.com",
+            "website": "SampleWebsite1.com"
+        }
+    },
+    {
+        "model": "companySignUp.companyProfile",
+        "pk": 2,
+        "fields": {
+            "cid": 987654321,
+            "description": "Test Description 2",
+            "avg_review": 5,
+            "open_time": "11:00AM",
+            "close_time": "4:00PM",
+            "contact_phone": "321-433-6542",
+            "contact_email": "SampleEmail2@Email.com",
+            "website": "SampleWebsite2.com"
+        }
     }
 ]
