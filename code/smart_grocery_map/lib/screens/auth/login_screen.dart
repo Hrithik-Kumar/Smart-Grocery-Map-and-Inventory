@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import '../../company_signup_screen.dart';
 import '/res/colors.dart';
@@ -159,11 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: SafeArea(
                     child: IconButton(
                       onPressed: () => Navigator.pop(context),
-                      icon: Icon(
-                        Platform.isAndroid
-                            ? Icons.arrow_back
-                            : Icons.arrow_back_ios,
-                      ),
+                      icon: backIconChoice(),
                       color: Colors.white,
                     ),
                   ),
@@ -174,6 +170,19 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+
+  Icon backIconChoice() {
+    if (kIsWeb) {
+      return const Icon(Icons.arrow_back);
+    } else {
+      if (Platform.isAndroid) {
+        return const Icon(Icons.arrow_back);
+      } else {
+        return const Icon(Icons.arrow_back_ios);
+      }
+    }   
   }
 
   Widget _buildForgotPasswordBtn() {
