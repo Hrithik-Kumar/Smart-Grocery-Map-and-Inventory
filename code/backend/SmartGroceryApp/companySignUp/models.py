@@ -3,7 +3,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class companyProfile(models.Model):
-    id = models.PositiveIntegerField()
+    cid = models.PositiveIntegerField()
     description = models.CharField(max_length=512)
     avg_review = models.IntegerField(
         default=-1,

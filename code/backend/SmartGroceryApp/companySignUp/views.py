@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from .models import companyProfile
 from .models import company
 
 from django.core.files.storage import FileSystemStorage
@@ -62,7 +63,7 @@ def company_change_profile(request):
     if request.method != 'POST':
         return JsonResponse({'status': 'did not recieve a POST request'}, status=403)
 
-    id = request.POST.get('id')
+    cid = request.POST.get('id')
     description = request.POST.get('description')
     avg_review = request.POST.get('avg_review')
     open_time = request.POST.get('open_time')
@@ -71,7 +72,7 @@ def company_change_profile(request):
     contact_email = request.POST.get('company_email')
     website = request.POST.get('website')
 
-    if id is None:
+    if cid is None:
         return JsonResponse({'status': 'no id was given'}, status=400)
 
     if description is None:
@@ -95,8 +96,7 @@ def company_change_profile(request):
     if website is None:
         return JsonResponse({'status': 'no website was given'}, status=400)
 
-    new_company = company(username=username, password=password, email=email, manager_name=manager_name,
-                                 store_name=store_name, store_location=store_location, logo=logo_file, map_of_store=map_of_store_file)
-    new_company.save()
+    new_companyProfile = companyProfile(cid=cid, description=description, avg_review=avg_review, open_time=open_time,close_time=close_time,contact_phone=contact_phone,contact_email=contact_email,website=website)
+    new_companyProfile.save()
 
     return JsonResponse({'status': 'success'}, status=201)
