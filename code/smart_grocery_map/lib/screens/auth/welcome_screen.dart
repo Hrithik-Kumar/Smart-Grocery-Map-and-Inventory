@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:smartgrocery/res/anims.dart';
-import 'package:smartgrocery/res/colors.dart';
-import 'package:smartgrocery/screens/auth/components/welcome_button.dart';
-import 'package:smartgrocery/screens/auth/login_screen.dart';
+import '/res/anims.dart';
+import '/res/colors.dart';
+import '/screens/auth/components/welcome_button.dart';
+import '/screens/auth/login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);

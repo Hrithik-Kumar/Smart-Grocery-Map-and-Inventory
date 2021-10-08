@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartgrocery/res/colors.dart';
+import '/res/colors.dart';
 
 const kHintTextStyle = TextStyle(
   color: Colors.white54,

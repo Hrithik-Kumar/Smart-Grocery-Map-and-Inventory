@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:smartgrocery/res/colors.dart';
-import 'package:smartgrocery/res/styles.dart';
+import '/res/colors.dart';
+import '/res/styles.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
