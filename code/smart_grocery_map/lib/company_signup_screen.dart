@@ -40,12 +40,12 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
     fontSize: 18.0,
   );
 
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _managerController = TextEditingController();
-  final TextEditingController _storeNameController = TextEditingController();
-  final TextEditingController _storeLocController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController managerController = TextEditingController();
+  TextEditingController storeNameController = TextEditingController();
+  TextEditingController storeLocController = TextEditingController();
 
   void _toggle() {
     setState(() {
@@ -56,12 +56,12 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
   @override
   void dispose() {
     super.dispose();
-    _usernameController.dispose();
-    _passwordController.dispose();
-    _emailController.dispose();
-    _managerController.dispose();
-    _storeNameController.dispose();
-    _storeLocController.dispose();
+    usernameController.dispose();
+    passwordController.dispose();
+    emailController.dispose();
+    managerController.dispose();
+    storeNameController.dispose();
+    storeLocController.dispose();
   }
 
   @override
@@ -107,7 +107,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                 ),
 
                 TextFormField(
-                  controller: _usernameController,
+                  controller: usernameController,
                   decoration: InputDecoration(
                     icon: const Icon(Icons.person, color: Colors.white),
                     hintStyle: formFieldHintTextStyle,
@@ -126,7 +126,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                 ),
 
                 TextFormField(
-                  controller: _passwordController,
+                  controller: passwordController,
                   keyboardType: TextInputType.text,
                   obscureText: _obscureText,
                   enableSuggestions: false,
@@ -152,7 +152,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                 ),
 
                 TextFormField(
-                    controller: _emailController,
+                    controller: emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       icon: const Icon(Icons.email, color: Colors.white),
@@ -166,7 +166,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                     validator: validateEmail),
 
                 TextFormField(
-                  controller: _managerController,
+                  controller: managerController,
                   decoration: InputDecoration(
                     icon: const Icon(Icons.face, color: Colors.white),
                     hintStyle: formFieldHintTextStyle,
@@ -185,7 +185,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                 ),
 
                 TextFormField(
-                  controller: _storeNameController,
+                  controller: storeNameController,
                   decoration: InputDecoration(
                     icon: const Icon(Icons.storefront, color: Colors.white),
                     hintStyle: formFieldHintTextStyle,
@@ -204,7 +204,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                 ),
 
                 TextFormField(
-                  controller: _storeLocController,
+                  controller: storeLocController,
                   decoration: InputDecoration(
                     icon: const Icon(Icons.location_on, color: Colors.white),
                     hintStyle: formFieldHintTextStyle,
@@ -234,12 +234,12 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                         const SnackBar(content: Text('Processing Data')),
                       );
 
-                      String user = _usernameController.text;
-                      String pass = _passwordController.text;
-                      String email = _emailController.text;
-                      String manager = _managerController.text;
-                      String sName = _storeNameController.text;
-                      String sLoc = _storeLocController.text;
+                      String user = usernameController.text;
+                      String pass = passwordController.text;
+                      String email = emailController.text;
+                      String manager = managerController.text;
+                      String sName = storeNameController.text;
+                      String sLoc = storeLocController.text;
 
                       // DELETE LATER
                       // print("Username: " + user);
@@ -262,7 +262,6 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                           await http.Response.fromStream(await request.send());
 
                       if (response.statusCode == 201) {
-                        dispose();
                         Navigator.pop(context, "Successful Registration");
                       } else if (response.body
                           .contains("username already exists")) {
