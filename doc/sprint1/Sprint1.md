@@ -30,7 +30,7 @@ Tasks:
 ---
 
 ## Spikes:
-Not yet
+ - when building the navigation bar flutter component, we created a BottomNavigationBar component that generates 4 different buttons on the bottom of the homepage, when any button is clicked, it shows the corresponding page on top of the screen. our original implementation was using a flat button, which includes a transition effect we didn't want, so we got rid of it and embraced the current method.
 
 ---
 
