@@ -13,7 +13,7 @@ $ flutter pub get
 ```
 - run the app
 ```sh
-$ flutter run lib/main.dart
+$ flutter run -d chrome --web-port=3001 lib/main.dart
 ```
 Technologies we use include: 
 1. [Flutter](https://flutter.dev/docs/get-started/install)
