@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'companySignUp.apps.CompanysignupConfig',
-    'companylogin.apps.CompanyloginConfig'
+    'companylogin.apps.CompanyloginConfig',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
