@@ -57,3 +57,46 @@ def company_sign_up(request):
     new_company.save()
 
     return JsonResponse({'status': 'success'}, status=201)
+
+def company_change_profile(request):
+    if request.method != 'POST':
+        return JsonResponse({'status': 'did not recieve a POST request'}, status=403)
+
+    id = request.POST.get('id')
+    description = request.POST.get('description')
+    avg_review = request.POST.get('avg_review')
+    open_time = request.POST.get('open_time')
+    close_time = request.POST.get('close_time')
+    contact_phone = request.POST.get('contact_phone')
+    contact_email = request.POST.get('company_email')
+    website = request.POST.get('website')
+
+    if id is None:
+        return JsonResponse({'status': 'no id was given'}, status=400)
+
+    if description is None:
+        return JsonResponse({'status': 'no description was given'}, status=400)
+
+    if avg_review is None:
+        return JsonResponse({'status': 'no average review was given'}, status=400)
+
+    if open_time is None:
+        return JsonResponse({'status': 'no open time was given'}, status=400)
+
+    if close_time is None:
+        return JsonResponse({'status': 'no close time was given'}, status=400)
+
+    if contact_phone is None:
+        return JsonResponse({'status': 'no contact phone was given'}, status=400)
+
+    if contact_email is None:
+        return JsonResponse({'status': 'no contact email was given'}, status=400)
+
+    if website is None:
+        return JsonResponse({'status': 'no website was given'}, status=400)
+
+    new_company = company(username=username, password=password, email=email, manager_name=manager_name,
+                                 store_name=store_name, store_location=store_location, logo=logo_file, map_of_store=map_of_store_file)
+    new_company.save()
+
+    return JsonResponse({'status': 'success'}, status=201)
