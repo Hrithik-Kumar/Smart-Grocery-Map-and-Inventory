@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.views.decorators import csrf
 from .models import company
+from django.views.decorators.csrf import csrf_exempt
 
 from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
-
+@csrf_exempt
 def company_sign_up(request):
     if request.method != 'POST':
         return JsonResponse({'status': 'did not recieve a POST request'}, status=403)
