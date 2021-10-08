@@ -43,10 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'companySignUp.apps.CompanysignupConfig',
+    'companylogin.apps.CompanyloginConfig',
+    'corsheaders'
+]
 
 MIDDLEWARE = [
-    'corsheaders',
-    'companylogin.apps.CompanyloginConfig'
+    "corsheaders.middleware.CorsMiddleware",
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

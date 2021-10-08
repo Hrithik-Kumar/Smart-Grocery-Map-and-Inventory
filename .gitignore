@@ -4,3 +4,4 @@
 build/
 **/pubspec.lock
 *.pyc
+.DS_Store
