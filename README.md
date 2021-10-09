@@ -20,10 +20,11 @@ Technologies we use include:
     ```
 3. Backend Setup:
     - Have [Python](https://www.python.org/downloads/) installed
-    - Install Django and Pillow
+    - Install Django, Pillow and django-cors-headers
     ```sh
     $ python -m pip install Django
     $ python -m pip install Pillow
+    $ python -m pip install django-cors-headers
     ```
 
 4. Running the app:
