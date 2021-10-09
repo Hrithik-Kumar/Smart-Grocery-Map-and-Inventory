@@ -7,7 +7,6 @@
 Technologies we use include: 
 - [Flutter](https://flutter.dev/docs/get-started/install)
 - [Python](https://www.python.org/downloads/)
-- [Java](https://www.java.com/en/download/manual.jsp)
 
 1. Clone this repository to your local machine.
 
