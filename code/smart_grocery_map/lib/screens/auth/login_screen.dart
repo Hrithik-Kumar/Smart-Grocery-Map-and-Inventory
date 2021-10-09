@@ -7,6 +7,7 @@ import '/res/styles.dart';
 import 'components/auth_button.dart';
 import 'package:http/http.dart' as http;
 import 'components/text_input_field.dart';
+import '/screens/home/NavBar.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -52,7 +53,8 @@ class _LoginScreenState extends State<LoginScreen> {
           await http.Response.fromStream(await request.send());
       if (response.statusCode == 200) {
         // Success
-        _showSnackbar('Success');
+        //_showSnackbar('Success');
+        Navigator.push(context, new MaterialPageRoute(builder: (context) => new NavBar()));
       } else if (response.statusCode == 400) {
         _showSnackbar('username/password incorrect');
       } else {
