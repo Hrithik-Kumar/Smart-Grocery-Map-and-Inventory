@@ -4,20 +4,40 @@
 - Our platform will help generate an optimal map based on a shopper's e-cart or grocery list that maps out the shortest path to get all their goods.
 - Team boundarybreakers will contribute its skills to create a mobile application that addresses the issue mentioned above.
 ## Installation
-- [Download Flutter and setup your device](https://flutter.dev/docs/get-started/install)
-- cd into the smart_grocery_map directory and get the sqflite plugin
-```sh
-cd smart_grocery_map
-flutter pub get
-```
-- run the app
-```sh
-flutter run lib/main.dart
-```
 Technologies we use include: 
-1. [Flutter](https://flutter.dev/docs/get-started/install)
-2. sqflite: a Flutter plugin for SQLite
-3. [Java](https://www.java.com/en/download/manual.jsp)
+- [Flutter](https://flutter.dev/docs/get-started/install)
+- [Python](https://www.python.org/downloads/)
+
+1. Clone this repository to your local machine.
+
+2. Frontend Setup:
+    - [Have Flutter and setup your device](https://flutter.dev/docs/get-started/install)
+    - go into the code/smart_grocery_map directory and get the dependencies
+    ```sh
+    $ cd code/smart_grocery_map
+    $ flutter pub get
+    ```
+3. Backend Setup:
+    - Have [Python](https://www.python.org/downloads/) installed
+    - Install Django, Pillow and django-cors-headers
+    ```sh
+    $ python -m pip install Django
+    $ python -m pip install Pillow
+    $ python -m pip install django-cors-headers
+    ```
+
+4. Running the app:
+    - go into the Django project directory and start the server
+    ```sh
+    $ cd code/backend/SmartGroceryApp
+    $ python manage.py runserver
+    ```
+    - go into the Flutter project directory and run the app
+    ```sh
+    $ cd code/smart_grocery_map
+    $ flutter run -d chrome --web-port=3001 lib/main.dart
+    ```
+
 ## Contribution
 ### Do you use Git Flow? 
 Yes, we will use the Git Flow model that uses multiple feature and main branches. 
