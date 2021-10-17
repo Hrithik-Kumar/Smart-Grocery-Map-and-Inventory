@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
-import '/screens/auxiliary/ProfilePage.dart';
+import './ProfilePage.dart';
+import 'package:http/http.dart' as http;
 
 class UserScreen extends StatelessWidget {
+  /* void _getCompanyInfo() {
+    var uri = Uri.parse('http://localhost:8000/api/company/profile');
+    
+  } */
+
   Widget createTitle(var input) {
     return Row(
       children: <Widget>[
