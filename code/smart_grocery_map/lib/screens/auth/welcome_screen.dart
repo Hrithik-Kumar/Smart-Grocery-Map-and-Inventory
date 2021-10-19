@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import '/screens/auth/customer_login_screen.dart';
 import '/res/anims.dart';
 import '/res/colors.dart';
 import '/screens/auth/components/welcome_button.dart';
@@ -56,7 +57,12 @@ class WelcomeScreen extends StatelessWidget {
               WelcomeButton(
                 text: 'Continue as Customer',
                 color: navblue,
-                onPressed: () {},
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CustomerLoginScreen(),
+                  ),
+                ),
               ),
               Expanded(
                 child: Container(),
