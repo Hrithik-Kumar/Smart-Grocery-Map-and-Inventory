@@ -114,7 +114,6 @@ Your Mark: 3
     - 1 mark  = two or more tasks were not completed as assigned
     - 0 marks = no task was completed by anyone
     
-
   Your Mark: 1, bounb8 and bounb6 were not completed by the person they were supposed to be completed by
 
   - Is each pull request made from a separate branch for each individual task? (max 5 marks)
@@ -125,7 +124,6 @@ Your Mark: 3
     - 1 mark  = pull request for 4 or more tasks not made from own separate branch
     - 0 marks = pull request for the majority of tasks not made from own separate branch
     
-
 Your Mark: 3 bounb8 and bounb6 again
     
   - Is the git commit message clear? (max 2 marks)
@@ -201,28 +199,43 @@ Tracking on Jira Total Mark: 15 / 20
     - 2 marks = full team is present
     - 1 mark = one member is not present
     - 0 marks = more than one member is not present
+  Mark: 2
   
   - Working software (max 2 marks)
     - 8 marks = features presented work flawlessly
     - 1 mark removed for each bug/error identified or for missing records on Jira
+  
+  Features
+  - Sign Up
+  - Login + Logout
+  - Modify Account Details
+  - Company Profile
+  Mark: 8
+  
 
   - Presentation (max 2 marks)
     - 2 marks = UI demonstrated is visually appealing and intuitive for users
     - 1 mark = one or more errors identified by the demo TA
     - 0 marks = UI is visually unappealing
+  Feedback:
+  - Add titles for screens to help know what screen they are on
+  - Account Screen - You should ideally display the information of the profile on the page
+  - Since this is a mobile app, be sure to include mobile navigations to your page (ie. Back button)
+  - Note: Hard coded reviews
+  Mark: 1
 
   - Documentation (max 2 marks)
+    - 2 marks = documentation has been created for frontend and backend systems with great detail
+    - 1 mark = documentation has been created for frontend and backend systems with some errors
+    - 0 marks = documentation has not been created
+  Mark: 2
 
-  - 2 marks = documentation has been created for frontend and backend systems with great detail
-  - 1 mark = documentation has been created for frontend and backend systems with some errors
-  - 0 marks = documentation has not been created
-
-  Your Mark: __ / 14
+  Your Mark: 13 / 14
 
 ---
 
 
 ## Total Mark
 
-69 / 89
+82 / 89
 
