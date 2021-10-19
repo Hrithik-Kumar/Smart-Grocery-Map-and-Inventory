@@ -1,22 +1,25 @@
 import 'dart:io';
-import 'package:flutter/foundation.dart' show kIsWeb;
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../../company_signup_screen.dart';
+import 'package:http/http.dart' as http;
+import '../../user_signup_screen.dart';
 import '/res/colors.dart';
 import '/res/styles.dart';
-import 'components/auth_button.dart';
-import 'package:http/http.dart' as http;
-import 'components/text_input_field.dart';
-import '/screens/company-home/NavBar.dart';
+import '/screens/user-home/NavBar.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+import '../../company_signup_screen.dart';
+import 'components/auth_button.dart';
+import 'components/text_input_field.dart';
+
+class CustomerLoginScreen extends StatefulWidget {
+  const CustomerLoginScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _CustomerLoginScreenState createState() => _CustomerLoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _CustomerLoginScreenState extends State<CustomerLoginScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -43,9 +46,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _doLogin() async {
     try {
-      // Url: http://localhost:8000/api/company/login
-      // For emulator: http://10.0.2.2:8000/api/company/login
-      var uri = Uri.parse('http://localhost:8000/api/company/login');
+      // Url: http://localhost:8000/api/user/login
+      // For emulator: http://10.0.2.2:8000/api/user/login
+      var uri = Uri.parse('http://localhost:8000/api/user/login');
       var request = http.MultipartRequest('POST', uri)
         ..fields['username'] = _usernameController.text
         ..fields['password'] = _passwordController.text;
@@ -54,7 +57,8 @@ class _LoginScreenState extends State<LoginScreen> {
       if (response.statusCode == 200) {
         // Success
         //_showSnackbar('Success');
-        Navigator.push(context, new MaterialPageRoute(builder: (context) => new NavBar()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => NavBar()));
       } else if (response.statusCode == 400) {
         _showSnackbar('username/password incorrect');
       } else {
@@ -82,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
     // Navigator.pop on the Selection Screen.
     final result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const CompanySignUpScreen()),
+      MaterialPageRoute(builder: (context) => const UserSignUpScreen()),
     );
 
     // After the Selection Screen returns a result, hide any previous snackbars
@@ -126,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        'Company Sign In',
+                        'Customer Sign In',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 30.0,
@@ -163,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       _buildForgotPasswordBtn(),
                       AuthButton(
                         onPressed: _validate,
-                        text: 'Sign in',
+                        text:'Sign In',
                       ),
                       _buildSignupBtn(),
                     ],
