@@ -50,6 +50,14 @@ class _ProfileScreenState extends State<ProfilePage> {
     );
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
+      ),
       backgroundColor: Colors.white,
       body: Center(
         child: ListView(
