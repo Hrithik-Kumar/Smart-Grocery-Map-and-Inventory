@@ -28,23 +28,34 @@ class NavBarState extends State<NavBar> {
       body: widget,
     );
   }
-
+  
   Widget _bottomTab() {
-    return BottomNavigationBar(
-      currentIndex: _pageNumIndex,
-      onTap: (int index) => setState(() => _pageNumIndex = index),
-      selectedItemColor: Colors.blue,
-      unselectedItemColor: Colors.black,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.local_convenience_store_rounded),
-          label: ("Store"),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: ("User"),
-        ),
-      ],
+    return ClipRRect(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(40), 
+        topRight: Radius.circular(40), 
+        bottomLeft: Radius.circular(40),
+        bottomRight: Radius.circular(40),
+      ),
+      child: BottomNavigationBar(
+        currentIndex: _pageNumIndex,
+        onTap: (int index) => setState(() => _pageNumIndex = index),
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey[600],
+        backgroundColor: Colors.grey[850],
+        showUnselectedLabels: false,
+        iconSize: 30,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.local_convenience_store_rounded),
+            label: 'Store',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Company',
+          ),
+        ],
+      ),
     );
   }
 }
