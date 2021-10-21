@@ -38,29 +38,42 @@ class NavBarState extends State<NavBar> {
   }
 
   Widget _bottomTab() {
-    return BottomNavigationBar(
-      currentIndex: _pageNumIndex,
-      onTap: (int index) => setState(() => _pageNumIndex = index),
-      selectedItemColor: Colors.blue,
-      unselectedItemColor: Colors.black,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.local_convenience_store_rounded),
-          label: ("Stores"),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.playlist_add_check_rounded),
-          label: ("My List"),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.map_rounded),
-          label: ("Map"),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: ("User"),
-        ),
-      ],
+    return ClipRRect(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(40), 
+        topRight: Radius.circular(40), 
+        bottomLeft: Radius.circular(40),
+        bottomRight: Radius.circular(40),
+      ),
+      /* child: Container(
+        constraints: BoxConstraints(maxWidth: 10), */
+      child: BottomNavigationBar(
+        currentIndex: _pageNumIndex,
+        onTap: (int index) => setState(() => _pageNumIndex = index),
+        selectedItemColor: Colors.black,//white,
+        unselectedItemColor: Colors.grey[600],
+        backgroundColor: Colors.grey[850],
+        showUnselectedLabels: false,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.local_convenience_store_rounded),
+            label: 'Store',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.playlist_add_check_rounded),
+            label: 'My List',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map_rounded),
+            label: 'Map',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'User',
+          ),
+        ],
+      ),
+      /* ), */
     );
   }
 }
