@@ -8,6 +8,7 @@ import 'components/auth_button.dart';
 import 'package:http/http.dart' as http;
 import 'components/text_input_field.dart';
 import '/screens/company-home/NavBar.dart';
+import 'package:smart_grocery_map/global.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -54,7 +55,9 @@ class _LoginScreenState extends State<LoginScreen> {
       if (response.statusCode == 200) {
         // Success
         //_showSnackbar('Success');
-        Navigator.push(context, new MaterialPageRoute(builder: (context) => new NavBar()));
+        Globals.companyUsername = _usernameController.text;
+        Navigator.push(
+            context, new MaterialPageRoute(builder: (context) => new NavBar()));
       } else if (response.statusCode == 400) {
         _showSnackbar('username/password incorrect');
       } else {

@@ -9,6 +9,7 @@ import '/res/styles.dart';
 import '/screens/user-home/NavBar.dart';
 import 'components/auth_button.dart';
 import 'components/text_input_field.dart';
+import 'package:smart_grocery_map/global.dart';
 
 class CustomerLoginScreen extends StatefulWidget {
   const CustomerLoginScreen({Key? key}) : super(key: key);
@@ -55,6 +56,7 @@ class _CustomerLoginScreenState extends State<CustomerLoginScreen> {
       if (response.statusCode == 200) {
         // Success
         //_showSnackbar('Success');
+        Globals.customerUsername = _usernameController.text;
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => NavBar()));
       } else if (response.statusCode == 400) {
