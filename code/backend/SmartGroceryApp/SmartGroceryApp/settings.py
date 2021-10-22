@@ -27,7 +27,11 @@ SECRET_KEY = 'django-insecure-yfh5d%xc9go*=i^sui@ks097&kx3h_n1sq^q*gqrjtc4x*vevb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '10.0.2.2',
+    'localhost'
+]
+
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3001',
@@ -47,6 +51,7 @@ INSTALLED_APPS = [
     'companylogin.apps.CompanyloginConfig',
     'companyInventory.apps.CompanyinventoryConfig',    
     'customerSignUp.apps.CustomersignupConfig'
+    'companyCreateItem.apps.CompanycreateitemConfig'
 ]
 
 MIDDLEWARE = [
