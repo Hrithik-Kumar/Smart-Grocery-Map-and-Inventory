@@ -3,12 +3,10 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../../user_signup_screen.dart';
+import './customer_signup_screen.dart';
 import '/res/colors.dart';
 import '/res/styles.dart';
 import '/screens/user-home/NavBar.dart';
-
-import '../../company_signup_screen.dart';
 import 'components/auth_button.dart';
 import 'components/text_input_field.dart';
 
@@ -86,12 +84,14 @@ class _CustomerLoginScreenState extends State<CustomerLoginScreen> {
     // Navigator.pop on the Selection Screen.
     final result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const UserSignUpScreen()),
+      MaterialPageRoute(builder: (context) => const CustomerSignUpScreen()),
     );
 
     // After the Selection Screen returns a result, hide any previous snackbars
     // and show the new result.
-    _showSnackbar(result);
+    if (result != "back") {
+      _showSnackbar(result);
+    }
   }
 
   void _showSnackbar(String message) {
@@ -167,7 +167,7 @@ class _CustomerLoginScreenState extends State<CustomerLoginScreen> {
                       _buildForgotPasswordBtn(),
                       AuthButton(
                         onPressed: _validate,
-                        text:'Sign In',
+                        text: 'Sign In',
                       ),
                       _buildSignupBtn(),
                     ],
