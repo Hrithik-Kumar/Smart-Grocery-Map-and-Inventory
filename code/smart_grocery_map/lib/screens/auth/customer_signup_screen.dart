@@ -234,6 +234,7 @@ class CustomerSignUpScreenState extends State<CustomerSignUpScreen> {
                           ..fields['email'] = email
                           ..fields['firstname'] = firstname
                           ..fields['lastname'] = lastname;
+                        
                         http.Response response = await http.Response.fromStream(
                             await request.send());
 
