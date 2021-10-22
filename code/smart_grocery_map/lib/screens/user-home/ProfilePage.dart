@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/screens/auxiliary/CompanyLogout.dart';
+import '../auxiliary/custLogout.dart';
 import '../../company_signup_screen.dart';
 import '/res/colors.dart';
 import '/res/styles.dart';
@@ -41,7 +41,7 @@ class _ProfileScreenState extends State<ProfilePage> {
           minWidth: 200.0,
           height: 42.0,
           onPressed: (){
-            Navigator.push(context, new MaterialPageRoute(builder: (context) => new CompanyLogout()));
+            Navigator.push(context, new MaterialPageRoute(builder: (context) => new CustLogout()));
           },
           color: Colors.green,
           child: Text('Log Out', style: TextStyle(color: Colors.white, fontSize: 20.0),),
