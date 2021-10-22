@@ -8,7 +8,7 @@ class userCart(models.Model):
     company_username = models.CharField(max_length=20)
     product_name = models.CharField(max_length=30)
     # amount user has
-    quantity=models.PositiveIntegerField()
+    quantity=models.IntegerField()
 
     class Meta:
         db_table = 'user_carts'
