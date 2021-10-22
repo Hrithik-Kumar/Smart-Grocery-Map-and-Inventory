@@ -168,7 +168,10 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
           }
 
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Processing Data')),
+            const SnackBar(
+              content: Text('Processing Data'),
+              duration: Duration(milliseconds: 500),
+            ),
           );
           try {
             _sendRequest();
@@ -223,7 +226,8 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
     String description = _descriptionController.text;
     String price = _priceController.text;
 
-    var uri = Uri.parse('http://localhost:8000/api/company/createProduct');
+    var uri = Uri.parse('http://10.0.2.2:8000/api/company/createProduct');
+    // var uri = Uri.parse('http://localhost:8000/api/company/createProduct');
 
     var request = http.MultipartRequest('POST', uri)
       ..fields['company_username'] = companyUsername
@@ -231,13 +235,18 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
       ..fields['product_type'] = productType
       ..fields['description'] = description
       ..fields['price'] = price
-      ..files.add(http.MultipartFile.fromBytes(
-          'image_source', await _image!.readAsBytes()));
+      ..files
+          .add(await http.MultipartFile.fromPath('image_source', _image!.path));
 
     var response = await request.send();
 
     if (response.statusCode == 201) {
-      Navigator.pop(context, "Successfully created product: " + productName);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Successfully created product: " + productName),
+        ),
+      );
+      Navigator.pop(context);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
