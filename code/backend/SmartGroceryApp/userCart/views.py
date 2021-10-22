@@ -34,6 +34,9 @@ def user_cart_modify_item(request):
         return JsonResponse({'status': 'success, item created'}, status=200)
 
     a=userCart.objects.get(username=username,company_username=company_username,product_name=product_name)
+    if(int(quantity)<0):
+        a.delete()
+        return JsonResponse({'status': 'success, item deleted'}, status=200)
     a.username=username
     a.company_username=company_username
     a.product_name=product_name
