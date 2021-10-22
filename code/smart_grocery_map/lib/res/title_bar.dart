@@ -5,7 +5,7 @@ Row makeTitleAndBackButton(String titleText, BuildContext context) {
     IconButton(
       icon: const Icon(Icons.arrow_back, color: Colors.white),
       onPressed: () {
-        Navigator.pop(context, "Back button pressed.");
+        Navigator.pop(context, "back");
       },
     ),
     Expanded(
