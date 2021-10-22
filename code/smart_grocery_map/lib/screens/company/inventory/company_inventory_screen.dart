@@ -5,6 +5,7 @@ import 'package:smart_grocery_map/res/colors.dart';
 import 'package:http/http.dart' as http;
 
 import 'components/inventory_item.dart';
+import 'package:smart_grocery_map/global.dart';
 
 class CompanyInventoryScreen extends StatefulWidget {
   const CompanyInventoryScreen({Key? key}) : super(key: key);
@@ -20,17 +21,22 @@ class _CompanyInventoryScreenState extends State<CompanyInventoryScreen> {
     _getData();
   }
 
-  void _getData() async {
+  Future<String> _getData() async {
     // Url: http://localhost:8000/api/company/inventory/query
     // For emulator: http://10.0.2.2:8000/api/company/inventory/query
-    String url = 'http://10.0.2.2:8000/api/company/inventory/query';
-    http.Response response = await http.post(Uri.parse(url));
+    var uri = Uri.parse('http://localhost:8000/api/company/inventory/query');
+    var request = http.MultipartRequest('POST', uri)
+      ..fields['companyUsername'] = Globals.companyUsername;
+    http.Response response =
+        await http.Response.fromStream(await request.send());
     if (response.statusCode == 200) {
       print('Success----------->\n ${response.body}');
+      return response.body;
     } else {
       Map dataMap = jsonDecode(response.body);
       print('Error----------->\n ${response.body}');
       _showSnackbar(dataMap['status']);
+      return "error";
     }
   }
 
