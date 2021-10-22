@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_grocery_map/res/title_bar.dart';
 import '/res/colors.dart';
 import 'package:http/http.dart' as http;
 
@@ -83,213 +84,208 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
           ),
         ),
         height: queryData.size.height,
-        child: SingleChildScrollView (child:Form(
-          key: _formKey,
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: queryData.size.width * 0.05,
-              vertical: queryData.size.height * 0.03,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.arrow_back, color: Colors.white),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                // Add TextFormFields and ElevatedButton here.
-                const SizedBox(height: 20),
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: queryData.size.width * 0.05,
+                vertical: queryData.size.height * 0.03,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  makeTitleAndBackButton(
+                      "Smart Grocery - Company Signup", context),
 
-                const Text(
-                  'Smart Grocery - Company Signup',
-                  style: titleTextStyle,
-                ),
+                  // Wrap IconButton and TitleBar in a thing
+                  // Add TextFormFields and ElevatedButton here.
+                  const SizedBox(height: 20),
 
-                TextFormField(
-                  controller: usernameController,
-                  decoration: InputDecoration(
-                    icon: const Icon(Icons.person, color: Colors.white),
-                    hintStyle: formFieldHintTextStyle,
-                    labelStyle: formFieldLabelTextStyle,
-                    hintText: 'Enter your preferred username',
-                    labelText: 'Username *',
-                  ),
-                  style: formFieldTextStyle,
-                  // The validator receives the text that the user has entered.
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
-                ),
-
-                TextFormField(
-                  controller: passwordController,
-                  keyboardType: TextInputType.text,
-                  obscureText: _obscureText,
-                  enableSuggestions: false,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                    icon: const Icon(Icons.password, color: Colors.white),
-                    hintStyle: formFieldHintTextStyle,
-                    labelStyle: formFieldLabelTextStyle,
-                    hintText: 'Enter your password',
-                    labelText: 'Password *',
-                    suffixIcon: IconButton(
-                        icon: checkObscure(_obscureText), onPressed: _toggle),
-                  ),
-                  style: formFieldTextStyle,
-                  // The validator receives the text that the user has entered.
-                  validator: (value) {
-                    if (value == null || value.isEmpty || value.length < 8) {
-                      return 'Please enter at least 8 characters to create '
-                          'a strong password';
-                    }
-                    return null;
-                  },
-                ),
-
-                TextFormField(
-                    controller: emailController,
-                    keyboardType: TextInputType.emailAddress,
+                  TextFormField(
+                    controller: usernameController,
                     decoration: InputDecoration(
-                      icon: const Icon(Icons.email, color: Colors.white),
+                      icon: const Icon(Icons.person, color: Colors.white),
                       hintStyle: formFieldHintTextStyle,
                       labelStyle: formFieldLabelTextStyle,
-                      hintText: 'Enter your email address',
-                      labelText: 'Email *',
+                      hintText: 'Enter your preferred username',
+                      labelText: 'Username *',
                     ),
                     style: formFieldTextStyle,
                     // The validator receives the text that the user has entered.
-                    validator: validateEmail),
-
-                TextFormField(
-                  controller: managerController,
-                  decoration: InputDecoration(
-                    icon: const Icon(Icons.face, color: Colors.white),
-                    hintStyle: formFieldHintTextStyle,
-                    labelStyle: formFieldLabelTextStyle,
-                    hintText: 'Enter the Manager Name',
-                    labelText: 'Manager Name *',
-                  ),
-                  style: formFieldTextStyle,
-                  // The validator receives the text that the user has entered.
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
-                ),
-
-                TextFormField(
-                  controller: storeNameController,
-                  decoration: InputDecoration(
-                    icon: const Icon(Icons.storefront, color: Colors.white),
-                    hintStyle: formFieldHintTextStyle,
-                    labelStyle: formFieldLabelTextStyle,
-                    hintText: 'Enter the Store Name',
-                    labelText: 'Store Name *',
-                  ),
-                  style: formFieldTextStyle,
-                  // The validator receives the text that the user has entered.
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
-                ),
-
-                TextFormField(
-                  controller: storeLocController,
-                  decoration: InputDecoration(
-                    icon: const Icon(Icons.location_on, color: Colors.white),
-                    hintStyle: formFieldHintTextStyle,
-                    labelStyle: formFieldLabelTextStyle,
-                    hintText: 'Enter the Store Location',
-                    labelText: 'Store Location *',
-                  ),
-                  style: formFieldTextStyle,
-                  // The validator receives the text that the user has entered.
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
-                ),
-
-                const SizedBox(height: 20),
-
-                ElevatedButton(
-                  onPressed: () async {
-                    // Validate returns true if the form is valid, or false otherwise.
-                    if (_formKey.currentState!.validate()) {
-                      // If the form is valid, display a snackbar. In the real world,
-                      // you'd often call a server or save the information in a database.
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Processing Data')),
-                      );
-
-                      String user = usernameController.text;
-                      String pass = passwordController.text;
-                      String email = emailController.text;
-                      String manager = managerController.text;
-                      String sName = storeNameController.text;
-                      String sLoc = storeLocController.text;
-
-                      // DELETE LATER
-                      // print("Username: " + user);
-                      // print("Password: " + pass);
-                      // print("Email: " + email);
-                      // print("Manager: " + manager);
-                      // print("Store Name: " + sName);
-                      // print("Store Location: " + sLoc);
-
-                      var uri =
-                          Uri.parse('http://localhost:8000/api/company/signup');
-                      var request = http.MultipartRequest('POST', uri)
-                        ..fields['username'] = user
-                        ..fields['password'] = pass
-                        ..fields['email'] = email
-                        ..fields['manager_name'] = manager
-                        ..fields['store_name'] = sName
-                        ..fields['store_location'] = sLoc;
-                      http.Response response =
-                          await http.Response.fromStream(await request.send());
-
-                      if (response.statusCode == 201) {
-                        Navigator.pop(context, "Successful Registration");
-                      } else if (response.body
-                          .contains("username already exists")) {
-                        const SnackBar usernameSnackBar = SnackBar(
-                            content: Text(
-                                'Username already exists! Please choose another one.'));
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(usernameSnackBar);
-                      } else if (response.body.contains("status")) {
-                        SnackBar errorSnackBar = 
-                          SnackBar(content: Text(parseResponse(response.body)));
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(errorSnackBar);
-                      } else {
-                        const SnackBar unknownSnackBar =
-                            SnackBar(content: Text('Unknown Error'));
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(unknownSnackBar);
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
                       }
-                    }
-                  },
-                  child: const Text('Register'),
-                ),
-              ],
+                      return null;
+                    },
+                  ),
+
+                  TextFormField(
+                    controller: passwordController,
+                    keyboardType: TextInputType.text,
+                    obscureText: _obscureText,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    decoration: InputDecoration(
+                      icon: const Icon(Icons.password, color: Colors.white),
+                      hintStyle: formFieldHintTextStyle,
+                      labelStyle: formFieldLabelTextStyle,
+                      hintText: 'Enter your password',
+                      labelText: 'Password *',
+                      suffixIcon: IconButton(
+                          icon: checkObscure(_obscureText), onPressed: _toggle),
+                    ),
+                    style: formFieldTextStyle,
+                    // The validator receives the text that the user has entered.
+                    validator: (value) {
+                      if (value == null || value.isEmpty || value.length < 8) {
+                        return 'Please enter at least 8 characters to create '
+                            'a strong password';
+                      }
+                      return null;
+                    },
+                  ),
+
+                  TextFormField(
+                      controller: emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        icon: const Icon(Icons.email, color: Colors.white),
+                        hintStyle: formFieldHintTextStyle,
+                        labelStyle: formFieldLabelTextStyle,
+                        hintText: 'Enter your email address',
+                        labelText: 'Email *',
+                      ),
+                      style: formFieldTextStyle,
+                      // The validator receives the text that the user has entered.
+                      validator: validateEmail),
+
+                  TextFormField(
+                    controller: managerController,
+                    decoration: InputDecoration(
+                      icon: const Icon(Icons.face, color: Colors.white),
+                      hintStyle: formFieldHintTextStyle,
+                      labelStyle: formFieldLabelTextStyle,
+                      hintText: 'Enter the Manager Name',
+                      labelText: 'Manager Name *',
+                    ),
+                    style: formFieldTextStyle,
+                    // The validator receives the text that the user has entered.
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
+                  ),
+
+                  TextFormField(
+                    controller: storeNameController,
+                    decoration: InputDecoration(
+                      icon: const Icon(Icons.storefront, color: Colors.white),
+                      hintStyle: formFieldHintTextStyle,
+                      labelStyle: formFieldLabelTextStyle,
+                      hintText: 'Enter the Store Name',
+                      labelText: 'Store Name *',
+                    ),
+                    style: formFieldTextStyle,
+                    // The validator receives the text that the user has entered.
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
+                  ),
+
+                  TextFormField(
+                    controller: storeLocController,
+                    decoration: InputDecoration(
+                      icon: const Icon(Icons.location_on, color: Colors.white),
+                      hintStyle: formFieldHintTextStyle,
+                      labelStyle: formFieldLabelTextStyle,
+                      hintText: 'Enter the Store Location',
+                      labelText: 'Store Location *',
+                    ),
+                    style: formFieldTextStyle,
+                    // The validator receives the text that the user has entered.
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                      return null;
+                    },
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  ElevatedButton(
+                    onPressed: () async {
+                      // Validate returns true if the form is valid, or false otherwise.
+                      if (_formKey.currentState!.validate()) {
+                        // If the form is valid, display a snackbar. In the real world,
+                        // you'd often call a server or save the information in a database.
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Processing Data')),
+                        );
+
+                        String user = usernameController.text;
+                        String pass = passwordController.text;
+                        String email = emailController.text;
+                        String manager = managerController.text;
+                        String sName = storeNameController.text;
+                        String sLoc = storeLocController.text;
+
+                        // DELETE LATER
+                        // print("Username: " + user);
+                        // print("Password: " + pass);
+                        // print("Email: " + email);
+                        // print("Manager: " + manager);
+                        // print("Store Name: " + sName);
+                        // print("Store Location: " + sLoc);
+
+                        var uri = Uri.parse(
+                            'http://localhost:8000/api/company/signup');
+                        var request = http.MultipartRequest('POST', uri)
+                          ..fields['username'] = user
+                          ..fields['password'] = pass
+                          ..fields['email'] = email
+                          ..fields['manager_name'] = manager
+                          ..fields['store_name'] = sName
+                          ..fields['store_location'] = sLoc;
+                        http.Response response = await http.Response.fromStream(
+                            await request.send());
+
+                        if (response.statusCode == 201) {
+                          Navigator.pop(context, "Successful Registration");
+                        } else if (response.body
+                            .contains("username already exists")) {
+                          const SnackBar usernameSnackBar = SnackBar(
+                              content: Text(
+                                  'Username already exists! Please choose another one.'));
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(usernameSnackBar);
+                        } else if (response.body.contains("status")) {
+                          SnackBar errorSnackBar = SnackBar(
+                              content: Text(parseResponse(response.body)));
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(errorSnackBar);
+                        } else {
+                          const SnackBar unknownSnackBar =
+                              SnackBar(content: Text('Unknown Error'));
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(unknownSnackBar);
+                        }
+                      }
+                    },
+                    child: const Text('Register'),
+                  ),
+                ],
+              ),
             ),
           ),
-        ), ),
+        ),
       ),
     );
   }
