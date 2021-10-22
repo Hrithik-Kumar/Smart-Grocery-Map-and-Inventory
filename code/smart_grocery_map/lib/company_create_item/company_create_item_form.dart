@@ -4,6 +4,7 @@ import '/res/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:smart_grocery_map/global.dart';
 
 class CompanyCreateItemForm extends StatefulWidget {
   const CompanyCreateItemForm({Key? key}) : super(key: key);
@@ -255,7 +256,7 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
   }
 
   Future _sendRequest() async {
-    String companyUsername = "testUsername"; // need get username from session
+    String companyUsername = Globals.companyUsername;
     String productName = _productNameController.text;
     String productType = _productTypeController.text;
     String description = _descriptionController.text;
