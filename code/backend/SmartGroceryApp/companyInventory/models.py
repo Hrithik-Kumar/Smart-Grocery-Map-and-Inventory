@@ -8,6 +8,16 @@ class companyInventory(models.Model):
     product_type = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
     price = models.DecimalField(max_digits = 8, decimal_places = 2)
+    aisle = models.IntegerField(
+        validators=[
+            MaxValueValidator(200),
+            MinValueValidator(1)
+        ])
+    shelf = models.IntegerField(
+        validators=[
+            MaxValueValidator(1000),
+            MinValueValidator(1)
+        ])
     image_source = models.CharField(max_length=50)
 
     class Meta:
