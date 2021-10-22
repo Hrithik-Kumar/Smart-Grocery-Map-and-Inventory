@@ -4,18 +4,18 @@ import '/res/colors.dart';
 import 'package:http/http.dart' as http;
 
 // Define a custom Form widget.
-class CompanySignUpScreen extends StatefulWidget {
-  const CompanySignUpScreen({Key? key}) : super(key: key);
+class CustomerSignUpScreen extends StatefulWidget {
+  const CustomerSignUpScreen({Key? key}) : super(key: key);
 
   @override
-  CompanySignUpScreenState createState() {
-    return CompanySignUpScreenState();
+  CustomerSignUpScreenState createState() {
+    return CustomerSignUpScreenState();
   }
 }
 
 // Define a corresponding State class.
 // This class holds data related to the form.
-class CompanySignUpScreenState extends State<CompanySignUpScreen> {
+class CustomerSignUpScreenState extends State<CustomerSignUpScreen> {
   // Create a global key that uniquely identifies the Form widget
   // and allows validation of the form.
   //
@@ -44,9 +44,8 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  TextEditingController managerController = TextEditingController();
-  TextEditingController storeNameController = TextEditingController();
-  TextEditingController storeLocController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
 
   void _toggle() {
     setState(() {
@@ -60,9 +59,8 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
     usernameController.dispose();
     passwordController.dispose();
     emailController.dispose();
-    managerController.dispose();
-    storeNameController.dispose();
-    storeLocController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
   }
 
   @override
@@ -96,7 +94,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   makeTitleAndBackButton(
-                      "Smart Grocery - Company Signup", context),
+                      "Smart Grocery - Customer Signup", context),
 
                   // Wrap IconButton and TitleBar in a thing
                   // Add TextFormFields and ElevatedButton here.
@@ -107,6 +105,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                     decoration: InputDecoration(
                       icon: const Icon(Icons.person, color: Colors.white),
                       hintStyle: formFieldHintTextStyle,
+                      errorStyle: formFieldHintTextStyle,
                       labelStyle: formFieldLabelTextStyle,
                       hintText: 'Enter your preferred username',
                       labelText: 'Username *',
@@ -130,6 +129,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                     decoration: InputDecoration(
                       icon: const Icon(Icons.password, color: Colors.white),
                       hintStyle: formFieldHintTextStyle,
+                      errorStyle: formFieldHintTextStyle,
                       labelStyle: formFieldLabelTextStyle,
                       hintText: 'Enter your password',
                       labelText: 'Password *',
@@ -153,6 +153,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                       decoration: InputDecoration(
                         icon: const Icon(Icons.email, color: Colors.white),
                         hintStyle: formFieldHintTextStyle,
+                        errorStyle: formFieldHintTextStyle,
                         labelStyle: formFieldLabelTextStyle,
                         hintText: 'Enter your email address',
                         labelText: 'Email *',
@@ -162,10 +163,11 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                       validator: validateEmail),
 
                   TextFormField(
-                    controller: managerController,
+                    controller: firstNameController,
                     decoration: InputDecoration(
                       icon: const Icon(Icons.face, color: Colors.white),
                       hintStyle: formFieldHintTextStyle,
+                      errorStyle: formFieldHintTextStyle,
                       labelStyle: formFieldLabelTextStyle,
                       hintText: 'Enter the Manager Name',
                       labelText: 'Manager Name *',
@@ -181,32 +183,14 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                   ),
 
                   TextFormField(
-                    controller: storeNameController,
+                    controller: lastNameController,
                     decoration: InputDecoration(
                       icon: const Icon(Icons.storefront, color: Colors.white),
                       hintStyle: formFieldHintTextStyle,
+                      errorStyle: formFieldHintTextStyle,
                       labelStyle: formFieldLabelTextStyle,
                       hintText: 'Enter the Store Name',
                       labelText: 'Store Name *',
-                    ),
-                    style: formFieldTextStyle,
-                    // The validator receives the text that the user has entered.
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
-                      return null;
-                    },
-                  ),
-
-                  TextFormField(
-                    controller: storeLocController,
-                    decoration: InputDecoration(
-                      icon: const Icon(Icons.location_on, color: Colors.white),
-                      hintStyle: formFieldHintTextStyle,
-                      labelStyle: formFieldLabelTextStyle,
-                      hintText: 'Enter the Store Location',
-                      labelText: 'Store Location *',
                     ),
                     style: formFieldTextStyle,
                     // The validator receives the text that the user has entered.
@@ -226,16 +210,13 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                       if (_formKey.currentState!.validate()) {
                         // If the form is valid, display a snackbar. In the real world,
                         // you'd often call a server or save the information in a database.
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Processing Data')),
-                        );
+                        _showSnackbar("Processing Data...");
 
                         String user = usernameController.text;
                         String pass = passwordController.text;
                         String email = emailController.text;
-                        String manager = managerController.text;
-                        String sName = storeNameController.text;
-                        String sLoc = storeLocController.text;
+                        String firstname = firstNameController.text;
+                        String lastname = lastNameController.text;
 
                         // DELETE LATER
                         // print("Username: " + user);
@@ -246,14 +227,13 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                         // print("Store Location: " + sLoc);
 
                         var uri = Uri.parse(
-                            'http://localhost:8000/api/company/signup');
+                            'http://localhost:8000/api/customer/signup');
                         var request = http.MultipartRequest('POST', uri)
                           ..fields['username'] = user
                           ..fields['password'] = pass
                           ..fields['email'] = email
-                          ..fields['manager_name'] = manager
-                          ..fields['store_name'] = sName
-                          ..fields['store_location'] = sLoc;
+                          ..fields['firstname'] = firstname
+                          ..fields['lastname'] = lastname;
                         http.Response response = await http.Response.fromStream(
                             await request.send());
 
@@ -261,21 +241,12 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                           Navigator.pop(context, "Successful Registration");
                         } else if (response.body
                             .contains("username already exists")) {
-                          const SnackBar usernameSnackBar = SnackBar(
-                              content: Text(
-                                  'Username already exists! Please choose another one.'));
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(usernameSnackBar);
+                          _showSnackbar(
+                              'Username already exists! Please choose another one.');
                         } else if (response.body.contains("status")) {
-                          SnackBar errorSnackBar = SnackBar(
-                              content: Text(parseResponse(response.body)));
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(errorSnackBar);
+                          _showSnackbar(parseResponse(response.body));
                         } else {
-                          const SnackBar unknownSnackBar =
-                              SnackBar(content: Text('Unknown Error'));
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(unknownSnackBar);
+                          _showSnackbar("Unknown Error");
                         }
                       }
                     },
@@ -289,40 +260,48 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
       ),
     );
   }
-}
 
-String? validateEmail(String? value) {
-  String? pattern =
-      r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-      r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-      r"{0,253}[a-zA-Z0-9])?)*$";
-  RegExp regex = RegExp(pattern);
-  if (value == null || value.isEmpty || !regex.hasMatch(value)) {
-    return 'Enter a valid email address';
-  } else {
-    return null;
+  String? validateEmail(String? value) {
+    String? pattern =
+        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+        r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+        r"{0,253}[a-zA-Z0-9])?)*$";
+    RegExp regex = RegExp(pattern);
+    if (value == null || value.isEmpty || !regex.hasMatch(value)) {
+      return 'Enter a valid email address';
+    } else {
+      return null;
+    }
+  }
+
+  String parseResponse(String value) {
+    String? pattern = r"'status' : '(\w+)'+";
+    RegExp regex = RegExp(pattern);
+    if (value == null || value.isEmpty) {
+      return "";
+    } else if (!regex.hasMatch(value)) {
+      return regex.stringMatch(value).toString();
+    } else {
+      return "";
+    }
+  }
+
+  Icon checkObscure(bool obscure) {
+    if (obscure) {
+      return const Icon(Icons.visibility_off, color: Colors.white);
+    } else {
+      return const Icon(Icons.visibility, color: Colors.white);
+    }
+  }
+
+  void _showSnackbar(String message) {
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
   }
 }
 
-String parseResponse(String value) {
-  String? pattern = r"'status' : '(\w+)'+";
-  RegExp regex = RegExp(pattern);
-  if (value == null || value.isEmpty) {
-    return "";
-  } else if (!regex.hasMatch(value)) {
-    return regex.stringMatch(value).toString();
-  } else {
-    return "";
-  }
-}
 
-Icon checkObscure(bool obscure) {
-  if (obscure) {
-    return const Icon(Icons.visibility_off, color: Colors.white);
-  } else {
-    return const Icon(Icons.visibility, color: Colors.white);
-  }
-}
 
 
 
@@ -338,7 +317,7 @@ Icon checkObscure(bool obscure) {
 //   @override
 //   Widget build(BuildContext context) {
 //     return const MaterialApp(
-//       title: 'Smart Grocery Map - Company Sign Up Screen',
+//       title: 'Smart Grocery Map - User Sign Up Screen',
 //       home: NavBar(),
 //     );
 //   }
@@ -356,7 +335,7 @@ Icon checkObscure(bool obscure) {
 //   Widget build(BuildContext context) {
     
 //     return const Scaffold(
-//       body: CompanySignUpScreen(),
+//       body: UserSignUpScreen(),
 //     );
 //   }
 // }
