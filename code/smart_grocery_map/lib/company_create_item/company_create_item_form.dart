@@ -21,6 +21,8 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
   final TextEditingController _productTypeController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
+  final TextEditingController _aisleController = TextEditingController();
+  final TextEditingController _shelfController = TextEditingController();
 
   XFile? _image;
   Widget _previewImage = const Icon(
@@ -53,6 +55,8 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
     _productTypeController.dispose();
     _descriptionController.dispose();
     _priceController.dispose();
+    _aisleController.dispose();
+    _shelfController.dispose();
   }
 
   TextFormField _productNameFormField() {
@@ -95,6 +99,26 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
     );
   }
 
+  TextFormField _descriptionFormField() {
+    return TextFormField(
+      controller: _descriptionController,
+      decoration: InputDecoration(
+        icon: const Icon(Icons.text_fields, color: Colors.white),
+        hintStyle: formFieldHintTextStyle,
+        labelStyle: formFieldLabelTextStyle,
+        hintText: 'Enter the product description',
+        labelText: 'Product Description *',
+      ),
+      style: formFieldTextStyle,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter some text';
+        }
+        return null;
+      },
+    );
+  }
+
   TextFormField _priceFormField() {
     return TextFormField(
       controller: _priceController,
@@ -115,20 +139,40 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
     );
   }
 
-  TextFormField _descriptionFormField() {
+  TextFormField _aisleFormField() {
     return TextFormField(
-      controller: _descriptionController,
+      controller: _aisleController,
       decoration: InputDecoration(
-        icon: const Icon(Icons.text_fields, color: Colors.white),
+        icon: const Icon(Icons.local_grocery_store, color: Colors.white),
         hintStyle: formFieldHintTextStyle,
         labelStyle: formFieldLabelTextStyle,
-        hintText: 'Enter the product description',
-        labelText: 'Product Description *',
+        hintText: 'Enter the product aisle',
+        labelText: 'Product Aisle *',
       ),
       style: formFieldTextStyle,
       validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please enter some text';
+        if (value == null || value.isEmpty || int.tryParse(value) == null) {
+          return 'Please enter a number between 1 and 200';
+        }
+        return null;
+      },
+    );
+  }
+
+  TextFormField _shelfFormField() {
+    return TextFormField(
+      controller: _shelfController,
+      decoration: InputDecoration(
+        icon: const Icon(Icons.local_grocery_store, color: Colors.white),
+        hintStyle: formFieldHintTextStyle,
+        labelStyle: formFieldLabelTextStyle,
+        hintText: 'Enter the product shelf',
+        labelText: 'Product Shelf *',
+      ),
+      style: formFieldTextStyle,
+      validator: (value) {
+        if (value == null || value.isEmpty || int.tryParse(value) == null) {
+          return 'Please enter a number between 1 and 1000';
         }
         return null;
       },
@@ -158,15 +202,6 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
     return ElevatedButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
-          if (_image == null) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Please choose an image'),
-              ),
-            );
-            return;
-          }
-
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Processing Data'),
@@ -225,9 +260,11 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
     String productType = _productTypeController.text;
     String description = _descriptionController.text;
     String price = _priceController.text;
+    String aisle = _aisleController.text;
+    String shelf = _shelfController.text;
 
-    var uri = Uri.parse('http://10.0.2.2:8000/api/company/createProduct');
-    // var uri = Uri.parse('http://localhost:8000/api/company/createProduct');
+    var uri = Uri.parse('http://10.0.2.2:8000/api/company/inventory/create');
+    // var uri = Uri.parse('http://localhost:8000/api/company/inventory/create');
 
     var request = http.MultipartRequest('POST', uri)
       ..fields['company_username'] = companyUsername
@@ -235,8 +272,13 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
       ..fields['product_type'] = productType
       ..fields['description'] = description
       ..fields['price'] = price
-      ..files
+      ..fields['aisle'] = aisle
+      ..fields['shelf'] = shelf;
+
+    if (_image != null) {
+      request.files
           .add(await http.MultipartFile.fromPath('image_source', _image!.path));
+    }
 
     var response = await request.send();
 
@@ -300,6 +342,8 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
                   _productTypeFormField(),
                   _descriptionFormField(),
                   _priceFormField(),
+                  _aisleFormField(),
+                  _shelfFormField(),
                   const SizedBox(height: 20),
                   _imagePickButton(),
                   _previewImage,
