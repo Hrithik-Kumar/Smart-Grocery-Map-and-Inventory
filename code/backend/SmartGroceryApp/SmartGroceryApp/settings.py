@@ -42,9 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'companySignUp.apps.CompanysignupConfig',
     'companylogin.apps.CompanyloginConfig',
-    'corsheaders',
+    'companyInventory.apps.CompanyinventoryConfig',    
     'customerSignUp.apps.CustomersignupConfig'
 ]
 
