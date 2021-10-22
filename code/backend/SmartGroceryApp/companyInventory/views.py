@@ -57,9 +57,10 @@ def company_inventory_create_item(request):
     price = request.POST.get('price')
     aisle = request.POST.get('aisle')
     shelf = request.POST.get('shelf')
+    image_file = 'company_items/default_item.png'
 
     if company_username is None:
-        return JsonResponse({'status': 'no company name was given'}, status=400)
+        return JsonResponse({'status': 'no company username was given'}, status=400)
 
     if product_name is None:
         return JsonResponse({'status': 'no product name was given'}, status=400)
@@ -76,8 +77,11 @@ def company_inventory_create_item(request):
     if aisle is None:
         return JsonResponse({'status': 'no aisle was given'}, status=400)
 
-    if aisle is None:
+    if shelf is None:
         return JsonResponse({'status': 'no shelf was given'}, status=400)
+
+    if not price.isdecimal():
+        return JsonResponse({'status': 'price must be a decimal number'}, status=400)
 
     if int(aisle) > 200 or int(aisle) < 1:
         return JsonResponse({'status': 'Aisle out of range, please choose a number between 1 and 200'}, status=406)
@@ -92,7 +96,7 @@ def company_inventory_create_item(request):
     company_product_dict = list(company_product.values())  # A list of dictionaries, each index is an entry
 
     if len(company_product_dict) > 0:
-        return JsonResponse({'status': 'Item with same name already exists in your company inventory'}, status=404)
+        return JsonResponse({'status': 'Item with same name already exists in your company inventory'}, status=400)
 
 
     if 'image_source' in request.FILES:
@@ -101,13 +105,9 @@ def company_inventory_create_item(request):
         fs = FileSystemStorage()
         image_file = fs.save(image_file, image)
 
-        new_item = companyInventory(company_username=company_username, product_name=product_name,
+    new_item = companyInventory(company_username=company_username, product_name=product_name,
                                     product_type=product_type, description=description, price=price,
                                     aisle=aisle, shelf=shelf, image_source=image_file)
-    else:
-        new_item = companyInventory(company_username=company_username, product_name=product_name,
-                                    product_type=product_type, description=description, price=price, 
-                                    aisle=aisle, shelf=shelf, image_source="NO_IMG")
     
     new_item.save()
 
