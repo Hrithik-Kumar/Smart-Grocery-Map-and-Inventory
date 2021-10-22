@@ -79,7 +79,7 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
               SizedBox(
                 width: 5.0,
               ),*/
-             /* new GestureDetector(
+              new GestureDetector(
                 child: Container(
                   width: 30,
                   height: 30,
@@ -128,7 +128,8 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
                 ),
                 onTap: () {
                   setState(() {
-                    if (quantity1 >= 999999999) {
+                    if (quantity1 >= 999) {
+
                       return;
                     }
                     quantity1++;
@@ -138,12 +139,12 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
                   if (timer != null) {
                     timer.cancel();
                   }
-                  if (quantity1 >= 999999999) {
+                  if (quantity1 >= 999) {
                     return;
                   }
                   timer = new Timer.periodic(Duration(milliseconds: 100), (e) {
                     setState(() {
-                      if (quantity1 >= 999999999) {
+                      if (quantity1 >= 999) {
                         return;
                       }
                       quantity1++;
@@ -160,7 +161,8 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
                     timer.cancel();
                   }
                 },
-              ),*/
+              ),
+
             ],
           ),
         ],
@@ -209,7 +211,7 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
           ),
           Row(
             children: <Widget>[
-              /*new GestureDetector(
+              new GestureDetector(
                 child: Container(
                   width: 30,
                   height: 30,
@@ -258,7 +260,7 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
                 ),
                 onTap: () {
                   setState(() {
-                    if (quantity2 >= 999999999) {
+                    if (quantity2 >= 999) {
                       return;
                     }
                     quantity2++;
@@ -268,12 +270,12 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
                   if (timer != null) {
                     timer.cancel();
                   }
-                  if (quantity2 >= 999999999) {
+                  if (quantity2 >= 999) {
                     return;
                   }
                   timer = new Timer.periodic(Duration(milliseconds: 100), (e) {
                     setState(() {
-                      if (quantity2 >= 999999999) {
+                      if (quantity2 >= 999) {
                         return;
                       }
                       quantity++;
@@ -290,7 +292,7 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
                     timer.cancel();
                   }
                 },
-              ),*/
+              ),
             ],
           ),
         ],
