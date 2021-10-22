@@ -50,8 +50,8 @@ INSTALLED_APPS = [
     'companySignUp.apps.CompanysignupConfig',
     'companylogin.apps.CompanyloginConfig',
     'companyInventory.apps.CompanyinventoryConfig',    
-    'customerSignUp.apps.CustomersignupConfig'
-    'companyCreateItem.apps.CompanycreateitemConfig'
+    'customerSignUp.apps.CustomersignupConfig',
+    'companyCreateItem.apps.CompanycreateitemConfig',
 ]
 
 MIDDLEWARE = [
