@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
-import '/screens/auxiliary/ProfilePage.dart';
+import './ProfilePage.dart';
+import 'package:http/http.dart' as http;
 
 class UserScreen extends StatelessWidget {
+  /* void _getCompanyInfo() {
+    var uri = Uri.parse('http://localhost:8000/api/company/profile');
+    
+  } */
+
   Widget createTitle(var input) {
     return Row(
       children: <Widget>[
@@ -41,7 +47,7 @@ class UserScreen extends StatelessWidget {
                     Navigator.push(context, new MaterialPageRoute(builder: (context) => new ProfilePage()));
                   },
                   icon: Icon(Icons.local_convenience_store_rounded),
-                  label: Text("Company Name\nView Profile"),
+                  label: Text("User\nView Profile"),
                   style: ElevatedButton.styleFrom(
                     primary: Colors.transparent,
                     onPrimary: Colors.black,

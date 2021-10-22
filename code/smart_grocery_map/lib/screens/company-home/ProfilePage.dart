@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'CompanyLogout.dart';
-
-import 'package:flutter/material.dart';
+import '/screens/auxiliary/CompanyLogout.dart';
 import '../../company_signup_screen.dart';
 import '/res/colors.dart';
 import '/res/styles.dart';
