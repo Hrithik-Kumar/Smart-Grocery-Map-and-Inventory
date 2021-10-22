@@ -87,7 +87,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
     // After the Selection Screen returns a result, hide any previous snackbars
     // and show the new result.
-    _showSnackbar(result);
+    if (result != "back") {
+      _showSnackbar(result);
+    }
   }
 
   void _showSnackbar(String message) {
