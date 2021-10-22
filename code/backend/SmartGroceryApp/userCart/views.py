@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import userCart
+from companyInventory.models import companyInventory
 from django.views.decorators import csrf
 from django.views.decorators.csrf import csrf_exempt
 
@@ -43,3 +44,36 @@ def user_cart_modify_item(request):
     a.quantity=quantity
     a.save()
     return JsonResponse({'status': 'success, item updated'}, status=200)
+
+@csrf_exempt
+def user_cart_query_item(request):
+    if request.method != 'POST':
+        return JsonResponse({'status': 'did not recieve a POST request'}, status=403)
+
+    username=request.POST.get('username')
+    company_username = request.POST.get('company_username')
+
+    if username is None:
+        return JsonResponse({'status': 'no user name was given'}, status=400)
+
+    if company_username is None:
+        #no company then check for all
+        q = userCart.objects.filter(username=username)
+    else:
+        #want cart for specific company
+        q = userCart.objects.filter(username=username,company_username=company_username)
+        
+    cart_dicts = list(q.values())
+
+    if len(cart_dicts) == 0:
+        return JsonResponse({'status': 'Nothing for user'}, status=404)
+
+    items = []
+    for item in cart_dicts:
+        items.append(list(item.values()))
+
+    return JsonResponse({
+            'status': 'success',
+            'items': items
+        }, 
+        status=201)
