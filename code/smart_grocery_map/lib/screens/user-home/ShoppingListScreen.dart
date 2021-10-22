@@ -129,6 +129,7 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
                 onTap: () {
                   setState(() {
                     if (quantity1 >= 999) {
+
                       return;
                     }
                     quantity1++;
@@ -161,6 +162,7 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
                   }
                 },
               ),
+
             ],
           ),
         ],
