@@ -2,7 +2,7 @@
 Chang Liu, Haowen Rui, Hayden Mak, Hrithik Kumar Advani, Johnson Su, Nimra Maqbool, Raymond Ho
 
 ## Unfinished tasks and group them into stories: 
-None
+We completed all the user stories from Sprint 1
 
 ## What are practices that you should continue during next sprint:
 - Meet regularly as outlined in the team-contract.md
