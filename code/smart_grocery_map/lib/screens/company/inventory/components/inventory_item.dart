@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smart_grocery_map/res/colors.dart';
 
+import '../companyDeleteItem.dart';
+
 class InventoryItem extends StatelessWidget {
   const InventoryItem({Key? key}) : super(key: key);
 
@@ -37,7 +39,7 @@ class InventoryItem extends StatelessWidget {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: <Widget>[
                   Text(
                     'Apple',
                     style: TextStyle(fontSize: 16, color: Colors.white),
@@ -50,6 +52,20 @@ class InventoryItem extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
+                  ),
+                  SizedBox(width: 2.0),
+                  new GestureDetector(
+                    child: Container(
+                      width: 300,
+                      height: 20,
+                      child: Icon(Icons.delete_outline),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new CompanyDeleteItem()));
+                    },
                   ),
                 ],
               ),
