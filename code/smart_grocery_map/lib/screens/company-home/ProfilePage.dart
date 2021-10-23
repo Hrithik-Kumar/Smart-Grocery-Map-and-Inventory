@@ -173,6 +173,7 @@ class _ProfileScreenState extends State<ProfilePage> {
               LogOutButton
             ])
         ),
+
         new Positioned(
           top: 0.0,
           left: 0.0,
