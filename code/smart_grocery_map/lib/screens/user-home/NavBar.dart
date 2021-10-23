@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import './StoreScreen.dart';
-import './ShoppingListScreen.dart';
-import './MapScreen.dart';
 import './UserScreen.dart';
+import '../company/inventory/company_inventory_screen.dart';
 
 class NavBar extends StatefulWidget {
   NavBar ({Key? key}) : super(key: key);
@@ -22,12 +21,9 @@ class NavBarState extends State<NavBar> {
         widget = StoreScreen();
         break;
       case 1:
-        widget = ShoppingListScreen();
+        widget = CompanyInventoryScreen();
         break;
       case 2:
-        widget = MapScreen();
-        break;
-      case 3:
         widget = UserScreen();
         break;
     }
@@ -40,20 +36,19 @@ class NavBarState extends State<NavBar> {
   Widget _bottomTab() {
     return ClipRRect(
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(40), 
-        topRight: Radius.circular(40), 
+        topLeft: Radius.circular(40),
+        topRight: Radius.circular(40),
         bottomLeft: Radius.circular(40),
         bottomRight: Radius.circular(40),
       ),
-      /* child: Container(
-        constraints: BoxConstraints(maxWidth: 10), */
       child: BottomNavigationBar(
         currentIndex: _pageNumIndex,
         onTap: (int index) => setState(() => _pageNumIndex = index),
-        selectedItemColor: Colors.black,//white,
+        selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey[600],
         backgroundColor: Colors.grey[850],
         showUnselectedLabels: false,
+        iconSize: 30,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.local_convenience_store_rounded),
@@ -61,19 +56,14 @@ class NavBarState extends State<NavBar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.playlist_add_check_rounded),
-            label: 'My List',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map_rounded),
-            label: 'Map',
-          ),
+            label: 'Inventory',),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'User',
-          ),
+            label: 'Company',),
+
+
         ],
       ),
-      /* ), */
     );
   }
 }
