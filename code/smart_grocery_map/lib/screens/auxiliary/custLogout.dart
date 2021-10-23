@@ -22,7 +22,6 @@ class CustLogout extends StatelessWidget{
       ),
     );
 
-
     //DateTime dateTime= DateTime.now();
     String year = DateTime.now().year.toString();
     String month = DateTime.now().month.toString();
@@ -81,5 +80,4 @@ class CustLogout extends StatelessWidget{
       body: body,
     );
   }
-
 }
