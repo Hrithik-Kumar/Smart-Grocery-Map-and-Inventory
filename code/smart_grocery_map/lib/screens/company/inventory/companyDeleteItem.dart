@@ -67,13 +67,9 @@ class CompanyDeleteItem extends StatelessWidget {
           shrinkWrap: true,
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
-            SizedBox(
-              height: 4.0,
-            ),
+            SizedBox(height: 4.0,),
             info,
-            SizedBox(
-              height: 4.0,
-            ),
+            SizedBox(height: 4.0,),
             DeleteButton,
             SizedBox(width: 50,),
             UndoButton,
