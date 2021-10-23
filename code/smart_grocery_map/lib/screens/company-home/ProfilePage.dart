@@ -134,44 +134,59 @@ class _ProfileScreenState extends State<ProfilePage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
-          children: <Widget>[
-            Text('Your description for the store:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
-            SizedBox(height: 4.0,),
-            DescriptionBox,
-            SizedBox(height: 8.0,),
-            Text('Your store is estiamted by customers:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
-            SizedBox(height: 4.0,),
-            avg_reviewBox,
-            SizedBox(height: 8.0,),
-            Text('Your store opens at:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
-            SizedBox(height: 4.0,),
-            open_timeBox,
-            SizedBox(height: 8.0,),
-            Text('Your store closes at:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
-            SizedBox(height: 4.0,),
-            close_timeBox,
-            SizedBox(height: 8.0,),
-            Text('Phone number:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
-            SizedBox(height: 4.0,),
-            contact_phoneBox,
-            SizedBox(height: 8.0,),
-            Text('Email:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
-            SizedBox(height: 4.0,),
-            contact_emailBox,
-            SizedBox(height: 8.0,),
-            Text('website:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
-            SizedBox(height: 4.0,),
-            websiteBox,
-            SizedBox(height: 40.0,),
-            LogOutButton
-          ],
-        ),
-      ),
-    );
 
+      body: Stack(children: <Widget>[
+        Container(
+          color: Colors.white,
+        ),
+        SingleChildScrollView(
+            child: Column(children: <Widget>[
+              Container(height: 70.0),
+              Text('Your description for the store:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
+              SizedBox(height: 4.0,),
+              DescriptionBox,
+              SizedBox(height: 8.0,),
+              Text('Your store is estiamted by customers:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
+              SizedBox(height: 4.0,),
+              avg_reviewBox,
+              SizedBox(height: 8.0,),
+              Text('Your store opens at:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
+              SizedBox(height: 4.0,),
+              open_timeBox,
+              SizedBox(height: 8.0,),
+              Text('Your store closes at:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
+              SizedBox(height: 4.0,),
+              close_timeBox,
+              SizedBox(height: 8.0,),
+              Text('Phone number:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
+              SizedBox(height: 4.0,),
+              contact_phoneBox,
+              SizedBox(height: 8.0,),
+              Text('Email:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
+              SizedBox(height: 4.0,),
+              contact_emailBox,
+              SizedBox(height: 8.0,),
+              Text('website:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
+              SizedBox(height: 4.0,),
+              websiteBox,
+              SizedBox(height: 40.0,),
+              LogOutButton
+            ])
+        ),
+        new Positioned(
+          top: 0.0,
+          left: 0.0,
+          right: 0.0,
+          child: AppBar(
+            title: Text('Profile:'),
+            leading: new IconButton(
+              icon: new Icon(Icons.arrow_back_ios, color: Colors.grey),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+          ),),
+      ]),
+    );
   }
 }
