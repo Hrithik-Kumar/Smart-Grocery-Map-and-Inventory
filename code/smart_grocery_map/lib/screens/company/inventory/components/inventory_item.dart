@@ -40,12 +40,12 @@ class InventoryItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     'Apple',
                     style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                   SizedBox(height: 2.0),
-                  Text(
+                  const Text(
                     '4',
                     style: TextStyle(
                       fontSize: 15,
@@ -54,17 +54,17 @@ class InventoryItem extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 2.0),
-                  new GestureDetector(
+                  GestureDetector(
                     child: Container(
                       width: 300,
                       height: 20,
-                      child: Icon(Icons.delete_outline),
+                      child: const Icon(Icons.delete_outline),
                     ),
                     onTap: () {
                       Navigator.push(
                           context,
-                          new MaterialPageRoute(
-                              builder: (context) => new CompanyDeleteItem()));
+                          MaterialPageRoute(
+                              builder: (context) => CompanyDeleteItem()));
                     },
                   ),
                 ],

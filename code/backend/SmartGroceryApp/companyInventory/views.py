@@ -46,6 +46,38 @@ def company_inventory_query(request):
         status=201)
 
 @csrf_exempt
+def inventory_query_all(request):
+
+    if request.method != 'GET':
+        return JsonResponse({'status': 'did not receive a GET request'}, status=403)
+
+
+    # if company.objects.filter(username=username):
+    #     return JsonResponse({'status': 'username already exists'}, status=400)
+
+    q = companyInventory.objects.all()
+
+
+    company_dicts = list(q.values())  # A list of dictionaries, each index is an entry
+    # print(company_dict)
+
+    if len(company_dicts) == 0:
+        return JsonResponse({'status': 'No items in company'}, status=404)
+
+    items = []
+
+    for comp_dict in company_dicts:
+        items.append(list(comp_dict.values()))
+    
+
+    return JsonResponse({
+            'status': 'success',
+            'items': items
+        }, 
+        status=201)
+
+
+@csrf_exempt
 def company_inventory_create_item(request):
     if request.method != 'POST':
         return JsonResponse({'status': 'did not receive a POST request'}, status=403)
