@@ -185,3 +185,23 @@ def company_inventory_update_item(request):
     new_item.save()
 
     return JsonResponse({'status': 'success'}, status=201)
+
+@csrf_exempt
+def company_inventory_delete_item(request):
+    if request.method != 'POST':
+        return JsonResponse({'status': 'did not recieve a POST request'}, status=403)
+    
+    try:
+        product_id = request.POST.get('id')
+    except:
+        return JsonResponse({'status': 'unable to fetch the item id'}, status=500)
+        
+    item = companyInventory.objects.filter(id=product_id)
+    
+    if item:
+        if companyInventory.objects.filter(id=product_id).delete():    
+            return JsonResponse({'status': 'success'}, status=201)
+        else: 
+            return JsonResponse({'status': 'unable to remove the item'}, status=400)
+    else:
+        return JsonResponse({'status': 'item does not exist in the database'}, status=401)
