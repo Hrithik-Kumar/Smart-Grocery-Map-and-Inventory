@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './StoreScreen.dart';
 import './UserScreen.dart';
+import './CompanyInventory.dart';
 
 class NavBar extends StatefulWidget {
   NavBar ({Key? key}) : super(key: key);
@@ -20,6 +21,9 @@ class NavBarState extends State<NavBar> {
         widget = StoreScreen();
         break;
       case 1:
+        widget = CompanyInventory();
+        break;
+      case 2:
         widget = UserScreen();
         break;
     }
@@ -51,10 +55,14 @@ class NavBarState extends State<NavBar> {
             label: 'Store',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.playlist_add_check_rounded),
+            label: 'Inventory',),
+          BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Company',
-          ),
-        ],
+            label: 'Company',),
+
+
+          ],
       ),
     );
   }
