@@ -112,8 +112,6 @@ class _ProfileScreenState extends State<ProfilePage> {
       ),
     );
 
-
-
     final LogOutButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Material(
@@ -134,7 +132,6 @@ class _ProfileScreenState extends State<ProfilePage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-
       body: Stack(children: <Widget>[
         Container(
           color: Colors.white,
