@@ -7,7 +7,8 @@ import '/res/styles.dart';
 import 'components/auth_button.dart';
 import 'package:http/http.dart' as http;
 import 'components/text_input_field.dart';
-import '/screens/home/NavBar.dart';
+import '/screens/company-home/NavBar.dart';
+import 'package:smart_grocery_map/global.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -54,7 +55,9 @@ class _LoginScreenState extends State<LoginScreen> {
       if (response.statusCode == 200) {
         // Success
         //_showSnackbar('Success');
-        Navigator.push(context, new MaterialPageRoute(builder: (context) => new NavBar()));
+        Globals.companyUsername = _usernameController.text;
+        Navigator.push(
+            context, new MaterialPageRoute(builder: (context) => new NavBar()));
       } else if (response.statusCode == 400) {
         _showSnackbar('username/password incorrect');
       } else {
@@ -87,7 +90,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
     // After the Selection Screen returns a result, hide any previous snackbars
     // and show the new result.
-    _showSnackbar(result);
+    if (result != "back") {
+      _showSnackbar(result);
+    }
   }
 
   void _showSnackbar(String message) {
@@ -126,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        'Sign In',
+                        'Company Sign In',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 30.0,
@@ -163,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       _buildForgotPasswordBtn(),
                       AuthButton(
                         onPressed: _validate,
-                        text: 'Login',
+                        text: 'Sign in',
                       ),
                       _buildSignupBtn(),
                     ],
