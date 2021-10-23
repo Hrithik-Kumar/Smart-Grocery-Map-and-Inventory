@@ -14,6 +14,7 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
   int quantity = 1;
   int quantity1 = 1;
   int quantity2 = 3;
+
   Timer timer = new Timer(new Duration(seconds: 3), () {});
 
   Widget btn1() {
