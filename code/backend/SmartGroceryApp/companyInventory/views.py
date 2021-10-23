@@ -11,7 +11,7 @@ from django.core.files.storage import FileSystemStorage
 def company_inventory_query(request):
 
     if request.method != 'POST':
-        return JsonResponse({'status': 'did not recieve a POST request'}, status=403)
+        return JsonResponse({'status': 'did not receive a POST request'}, status=403)
 
     company_username = request.POST.get('company_username')
 
@@ -25,52 +25,42 @@ def company_inventory_query(request):
     q = companyInventory.objects.filter(company_username = company_username)
 
 
-    company_dict = list(q.values())  # A list of dictionaries, each index is an entry
+    company_dicts = list(q.values())  # A list of dictionaries, each index is an entry
     # print(company_dict)
 
-    if len(company_dict) == 0:
+    if len(company_dicts) == 0:
         return JsonResponse({'status': 'No items in company'}, status=404)
 
-    pid = []
-    p = []
-    p_type = []
-    prices = []
-    descriptions = []
-    img = []
+    items = []
 
-    for comp in company_dict:
-        pid.append(comp.get("id", ""))
-        p.append(comp.get("product_name", ""))
-        p_type.append(comp.get("product_type", ""))
-        descriptions.append(comp.get("description", ""))
-        prices.append(comp.get("price", ""))
-        img.append(comp.get("image_source", ""))
+    
+
+    for comp_dict in company_dicts:
+        items.append(list(comp_dict.values()))
     
 
     return JsonResponse({
             'status': 'success',
-            'product_ids': pid,
-            'products': p,
-            "product_types": p_type,
-            "descriptions": descriptions,
-            "prices": prices,
-            "img_sources": img
+            'items': items
         }, 
         status=201)
 
 @csrf_exempt
 def company_inventory_create_item(request):
     if request.method != 'POST':
-        return JsonResponse({'status': 'did not recieve a POST request'}, status=403)
+        return JsonResponse({'status': 'did not receive a POST request'}, status=403)
 
     company_username = request.POST.get('company_username')
     product_name = request.POST.get('product_name')
     product_type = request.POST.get('product_type')
     description = request.POST.get('description')
     price = request.POST.get('price')
+    aisle = request.POST.get('aisle')
+    shelf = request.POST.get('shelf')
+    image_file = 'company_items/default_item.png'
 
     if company_username is None:
-        return JsonResponse({'status': 'no company name was given'}, status=400)
+        return JsonResponse({'status': 'no company username was given'}, status=400)
 
     if product_name is None:
         return JsonResponse({'status': 'no product name was given'}, status=400)
@@ -84,6 +74,100 @@ def company_inventory_create_item(request):
     if price is None:
         return JsonResponse({'status': 'no price was given'}, status=400)
 
+    if aisle is None:
+        return JsonResponse({'status': 'no aisle was given'}, status=400)
+
+    if shelf is None:
+        return JsonResponse({'status': 'no shelf was given'}, status=400)
+
+    if not price.isdecimal():
+        return JsonResponse({'status': 'price must be a decimal number'}, status=400)
+
+    if int(aisle) > 200 or int(aisle) < 1:
+        return JsonResponse({'status': 'Aisle out of range, please choose a number between 1 and 200'}, status=406)
+
+    if int(shelf) > 1000 or int(shelf) < 1:
+        return JsonResponse({'status': 'Shelf out of range, please choose a number between 1 and 1000'}, status=406)
+
+    company_items = companyInventory.objects.filter(company_username = company_username)
+
+    company_product = company_items.filter(product_name = product_name)
+
+    company_product_dict = list(company_product.values())  # A list of dictionaries, each index is an entry
+
+    if len(company_product_dict) > 0:
+        return JsonResponse({'status': 'Item with same name already exists in your company inventory'}, status=400)
+
+
+    if 'image_source' in request.FILES:
+        image = request.FILES['image_source']
+        image_file = 'company_items/' + image.name
+        fs = FileSystemStorage()
+        image_file = fs.save(image_file, image)
+
+    new_item = companyInventory(company_username=company_username, product_name=product_name,
+                                    product_type=product_type, description=description, price=price,
+                                    aisle=aisle, shelf=shelf, image_source=image_file)
+    
+    new_item.save()
+
+    return JsonResponse({'status': 'success'}, status=201)
+
+@csrf_exempt
+def company_inventory_update_item(request):
+    if request.method != 'POST':
+        return JsonResponse({'status': 'did not receive a POST request'}, status=403)
+
+    company_username = request.POST.get('company_username')
+    id = request.POST.get('id')
+    product_name = request.POST.get('product_name')
+    product_type = request.POST.get('product_type')
+    description = request.POST.get('description')
+    price = request.POST.get('price')
+    aisle = request.POST.get('aisle')
+    shelf = request.POST.get('shelf')
+
+    
+
+    if company_username is None:
+        return JsonResponse({'status': 'no company name was given'}, status=400)
+
+    if id is None:
+        return JsonResponse({'status': 'no product id was given'}, status=400)
+
+    if product_name is None:
+        return JsonResponse({'status': 'no product name was given'}, status=400)
+
+    if product_type is None:
+        return JsonResponse({'status': 'no product type was given'}, status=400)
+
+    if description is None:
+        return JsonResponse({'status': 'no description was given'}, status=400)
+
+    if price is None:
+        return JsonResponse({'status': 'no price was given'}, status=400)
+
+    if aisle is None:
+        return JsonResponse({'status': 'no aisle was given'}, status=400)
+
+    if shelf is None:
+        return JsonResponse({'status': 'no shelf was given'}, status=400)
+
+    if int(aisle) > 200 or int(aisle) < 1:
+        return JsonResponse({'status': 'Aisle out of range, please choose a number between 1 and 200'}, status=406)
+
+    if int(shelf) > 1000 or int(shelf) < 1:
+        return JsonResponse({'status': 'Shelf out of range, please choose a number between 1 and 1000'}, status=406)
+
+    company_items = companyInventory.objects.filter(company_username = company_username)
+
+    company_product = company_items.filter(id = id)
+
+    company_product_dict = list(company_product.values())  # A list of dictionaries, each index is an entry
+
+    if len(company_product_dict) == 0:
+        return JsonResponse({'status': 'No matching item in company'}, status=404)
+
     if 'image_source' in request.FILES:
         image = request.FILES['image_source']
         image_file = 'company_items/' + image.name
@@ -91,10 +175,12 @@ def company_inventory_create_item(request):
         image_file = fs.save(image_file, image)
 
         new_item = companyInventory(company_username=company_username, product_name=product_name,
-                                    product_type=product_type, description=description, price=price, image_source=image_file)
+                                    product_type=product_type, description=description, price=price,
+                                    aisle=aisle, shelf=shelf, image_source=image_file)
     else:
         new_item = companyInventory(company_username=company_username, product_name=product_name,
-                                    product_type=product_type, description=description, price=price, image_source="NO_IMG")
+                                    product_type=product_type, description=description, price=price, 
+                                    aisle=aisle, shelf=shelf, image_source="NO_IMG")
     
     new_item.save()
 
