@@ -4,6 +4,7 @@ import '../../company_signup_screen.dart';
 import '/res/colors.dart';
 import '/res/styles.dart';
 import 'package:http/http.dart' as http;
+import '/global.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -13,18 +14,81 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfilePage> {
-  Widget descriptionInput() {
+  TextEditingController _oldUsername = TextEditingController();
+  TextEditingController _oldPassword = TextEditingController();
+  TextEditingController _username = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  TextEditingController _firstName = TextEditingController();
+  TextEditingController _lastName = TextEditingController();
+  TextEditingController _email = TextEditingController();
+
+  void _validate() {
+    if (_oldUsername.text.isEmpty || _oldPassword.text.isEmpty || _username.text.isEmpty || _password.text.isEmpty || _firstName.text.isEmpty || _lastName.text.isEmpty || _email.text.isEmpty) {
+      _showSnackbar('Please fill in every box');
+    } else {
+      _doLogin();
+    }
+  }
+
+  void _doLogin() async {
+    try {
+      var uri = Uri.parse('http://localhost:8000/api/customer/editprofile');
+      var request = http.MultipartRequest('POST', uri)
+        ..fields['username'] = _oldUsername.text
+        ..fields['password'] = _oldPassword.text
+        ..fields['newusername'] = _username.text
+        ..fields['newpassword'] = _password.text
+        ..fields['firstname'] = _firstName.text
+        ..fields['lastname'] = _lastName.text
+        ..fields['email'] = _email.text;
+      http.Response response =
+          await http.Response.fromStream(await request.send());
+      if (response.statusCode == 200) {
+        // Success
+        _showSnackbar('Success');
+        Globals.customerUsername = _username.text;
+      } else if (response.statusCode == 400) {
+        _showSnackbar('old username/password incorrect');
+      } else {
+        _showSnackbar('Failed to login');
+      }
+    } catch (e) {
+      _showSnackbar(e.toString());
+    }
+  }
+
+  void _showSnackbar(String message) {
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  Widget descriptionInput(TextEditingController c) {
     return TextFormField(
+      controller: c,
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
-      initialValue: 'Please input',
+      //initialValue: 'Please input to revise',
       decoration: InputDecoration(
-          hintText: 'To revise it: ',
+          hintText: 'Please input to revise',
           contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(32.0)
           )
       ),
+    );
+  }
+
+  Widget createSaveButton() {
+    return (
+      TextButton(
+        onPressed: _validate,
+        child: Text('Save'),
+        style: TextButton.styleFrom(
+          primary: Colors.black,
+          textStyle: const TextStyle(fontSize: 20),
+        ),
+      )
     );
   }
 
@@ -64,22 +128,35 @@ class _ProfileScreenState extends State<ProfilePage> {
           shrinkWrap: true,
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
-            Text('Username:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
+            Text('Old Username:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
             SizedBox(height: 4.0,),
-            descriptionInput(),
+            descriptionInput(_oldUsername),
+            SizedBox(height: 8.0,),
+            Text('Old Password:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
+            SizedBox(height: 4.0,),
+            descriptionInput(_oldPassword),
+            SizedBox(height: 8.0,),
+            Text('New Username:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
+            SizedBox(height: 4.0,),
+            descriptionInput(_username),
+            SizedBox(height: 8.0,),
+            Text('Old Password:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
+            SizedBox(height: 4.0,),
+            descriptionInput(_password),
             SizedBox(height: 8.0,),
             Text('First Name:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
             SizedBox(height: 4.0,),
-            descriptionInput(),
+            descriptionInput(_firstName),
             SizedBox(height: 8.0,),
             Text('Last Name:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
             SizedBox(height: 4.0,),
-            descriptionInput(),
+            descriptionInput(_lastName),
             SizedBox(height: 8.0,),
             Text('Email:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
             SizedBox(height: 4.0,),
-            descriptionInput(),
-            SizedBox(height: 40.0,),
+            descriptionInput(_email),
+            SizedBox(height: 4.0,),
+            createSaveButton(),
             LogOutButton
           ],
         ),
