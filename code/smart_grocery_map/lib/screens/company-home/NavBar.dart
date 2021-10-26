@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import './StoreScreen.dart';
 import './UserScreen.dart';
-import './CompanyInventory.dart';
+import 'package:smart_grocery_map/screens/company/inventory/company_inventory_screen.dart';
 
 class NavBar extends StatefulWidget {
   NavBar ({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class NavBarState extends State<NavBar> {
         widget = StoreScreen();
         break;
       case 1:
-        widget = CompanyInventory();
+        widget = CompanyInventoryScreen();
         break;
       case 2:
         widget = UserScreen();
