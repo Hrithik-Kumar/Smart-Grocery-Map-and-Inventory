@@ -218,12 +218,11 @@ class CustomerSignUpScreenState extends State<CustomerSignUpScreen> {
                         String lastname = lastNameController.text;
 
                         // DELETE LATER
-                        // print("Username: " + user);
-                        // print("Password: " + pass);
-                        // print("Email: " + email);
-                        // print("Manager: " + manager);
-                        // print("Store Name: " + sName);
-                        // print("Store Location: " + sLoc);
+                        print("Username: " + user);
+                        print("Password: " + pass);
+                        print("Email: " + email);
+                        print("First Name: " + firstname);
+                        print("Last Name: " + lastname);
 
                         var uri = Uri.parse(
                             'http://10.0.2.2:8000/api/customer/signup');
