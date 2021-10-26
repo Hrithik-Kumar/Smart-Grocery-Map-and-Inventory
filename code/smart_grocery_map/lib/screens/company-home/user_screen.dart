@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import './ProfilePage.dart';
+import 'profile_page.dart';
 import 'package:http/http.dart' as http;
 
 class UserScreen extends StatelessWidget {
   /* void _getCompanyInfo() {
-    var uri = Uri.parse('http://localhost:8000/api/company/profile');
+    var uri = Uri.parse('http://http://10.0.2.2:8000/api/company/profile');
     
   } */
 
@@ -33,35 +33,34 @@ class UserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20.0,
-          vertical: 80.0,
-        ),
-        child: Column(
-          children: [
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20.0,
+            vertical: 80.0,
+          ),
+          child: Column(children: [
             createTitle('Account'),
             Row(
               children: <Widget>[
                 ElevatedButton.icon(
                   onPressed: () {
-                    Navigator.push(context, new MaterialPageRoute(builder: (context) => new ProfilePage()));
+                    Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new ProfilePage()));
                   },
                   icon: Icon(Icons.local_convenience_store_rounded),
-                  label: Text("User\nView Profile"),
+                  label: Text("Your Company\nView Profile"),
                   style: ElevatedButton.styleFrom(
                     primary: Colors.transparent,
                     onPrimary: Colors.black,
                     shadowColor: Colors.transparent,
-                    alignment: Alignment(0,0),
+                    alignment: Alignment(0, 0),
                   ),
                 ),
               ],
             ),
             createTitle('Settings'),
-          ]
-        )
-        
-      ),
+          ])),
     );
   }
 }

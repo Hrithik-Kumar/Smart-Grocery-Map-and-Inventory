@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import './StoreScreen.dart';
-import './ShoppingListScreen.dart';
-import './MapScreen.dart';
-import './UserScreen.dart';
+import 'store_screen.dart';
+import 'shopping_list_screen.dart';
+import 'map_screen.dart';
+import 'user_screen.dart';
 
 class NavBar extends StatefulWidget {
   NavBar ({Key? key}) : super(key: key);
