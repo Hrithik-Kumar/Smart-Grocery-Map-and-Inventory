@@ -227,14 +227,14 @@ class CustomerSignUpScreenState extends State<CustomerSignUpScreen> {
                         // print("Store Location: " + sLoc);
 
                         var uri = Uri.parse(
-                            'http://localhost:8000/api/customer/signup');
+                            'http://http://10.0.2.2:8000/api/customer/signup');
                         var request = http.MultipartRequest('POST', uri)
                           ..fields['username'] = user
                           ..fields['password'] = pass
                           ..fields['email'] = email
                           ..fields['firstname'] = firstname
                           ..fields['lastname'] = lastname;
-                        
+
                         http.Response response = await http.Response.fromStream(
                             await request.send());
 
