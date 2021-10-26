@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './StoreScreen.dart';
-import './UserScreen.dart';
+import 'store_screen.dart';
+import 'user_screen.dart';
 import 'package:smart_grocery_map/screens/company/inventory/company_inventory_screen.dart';
 
 class NavBar extends StatefulWidget {

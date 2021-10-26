@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import './customer_signup_screen.dart';
 import '/res/colors.dart';
 import '/res/styles.dart';
-import '/screens/user-home/NavBar.dart';
+import '../user-home/nav_bar.dart';
 import 'components/auth_button.dart';
 import 'components/text_input_field.dart';
 import 'package:smart_grocery_map/global.dart';
