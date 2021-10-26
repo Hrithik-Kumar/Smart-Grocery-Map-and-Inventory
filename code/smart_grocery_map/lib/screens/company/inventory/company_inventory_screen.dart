@@ -26,7 +26,7 @@ class _CompanyInventoryScreenState extends State<CompanyInventoryScreen> {
     // Url: http://localhost:8000/api/company/inventory/query
     // For emulator: http://10.0.2.2:8000/api/company/inventory/query
     var uri =
-        Uri.parse('http://http://10.0.2.2:8000/api/company/inventory/query');
+        Uri.parse('http://10.0.2.2:8000/api/company/inventory/query');
     var request = http.MultipartRequest('POST', uri)
       ..fields['companyUsername'] = Globals.companyUsername;
     http.Response response =

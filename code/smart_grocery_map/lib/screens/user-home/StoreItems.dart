@@ -61,7 +61,7 @@ class StoreItemsState extends State<StoreItems> {
   void _addItems(var itemName, var i) async {
     try {
       var uri =
-          Uri.parse('http://http://10.0.2.2:8000/api/customer/usercart/modify');
+          Uri.parse('http://10.0.2.2:8000/api/customer/usercart/modify');
       var request = http.MultipartRequest('POST', uri)
         ..fields['username'] = Globals.customerUsername
         ..fields['company_username'] = companyUsername
