@@ -46,7 +46,8 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       // Url: http://localhost:8000/api/company/login
       // For emulator: http://10.0.2.2:8000/api/company/login
-      var uri = Uri.parse('http://localhost:8000/api/company/login');
+      // var uri = Uri.parse('http://localhost:8000/api/company/login');
+      var uri = Uri.parse('http://10.0.2.2:8000/api/company/login');
       var request = http.MultipartRequest('POST', uri)
         ..fields['username'] = _usernameController.text
         ..fields['password'] = _passwordController.text;
