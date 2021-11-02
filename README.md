@@ -36,7 +36,7 @@ Technologies we use include:
     ```sh
     $ cd code/smart_grocery_map
     $ flutter run -d chrome --web-port=3001 lib/main.dart
-    $ flutter run -d emulater-5554 --web-port=3001 lib/main.dart
+    $ flutter run -d emulator-5554 lib/main.dart
     ```
 
 ## Contribution
