@@ -49,9 +49,10 @@ INSTALLED_APPS = [
     'corsheaders',
     'companySignUp.apps.CompanysignupConfig',
     'companylogin.apps.CompanyloginConfig',
-    'companyInventory.apps.CompanyinventoryConfig',    
+    'companyInventory.apps.CompanyinventoryConfig',
     'customerSignUp.apps.CustomersignupConfig',
     'userCart.apps.UsercartConfig',
+    'customerMap.apps.CustomermapConfig',
 ]
 
 MIDDLEWARE = [
