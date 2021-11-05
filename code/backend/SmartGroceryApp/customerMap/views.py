@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-import json
 from companyInventory.models import companyInventory
 from userCart.models import userCart
 from django.views.decorators.csrf import csrf_exempt
@@ -10,15 +9,13 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def customer_get_item_locations(request):
-    if request.method != 'GET':
-        return JsonResponse({'status': 'did not receive a GET request'}, status=403)
+    if request.method != 'POST':
+        return JsonResponse({'status': 'did not receive a POST request'}, status=403)
 
-    body = json.loads(request.body)
+    customer_username = request.POST.get('customer_username')
 
-    if not 'customer_username' in body:
+    if customer_username is None:
         return JsonResponse({'status': 'no customer username was given'}, status=400)
-
-    customer_username = body['customer_username']
 
     customer_items = list(userCart.objects.filter(
         username=customer_username).values('company_username', 'product_name'))
