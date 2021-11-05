@@ -200,9 +200,9 @@ Tracking on Jira Total Mark: 23 / 24
     There is no web link or other reference lending support to the presented diagram.
     - 0 marks = No diagram present or the presented document does not look like a software architecture diagram
 
-    Your Mark: 2
+    Your Mark: 4
 
-  System Design Total: 8 / 10  
+  System Design Total: 10 / 10  
 
 ---
 
@@ -245,4 +245,4 @@ Comments:
 
 ## Total Mark
 
-90/ 93
+92/ 93
