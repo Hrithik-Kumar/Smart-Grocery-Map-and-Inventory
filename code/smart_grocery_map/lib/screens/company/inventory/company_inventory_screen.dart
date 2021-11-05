@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:smart_grocery_map/company_create_item/company_create_item_button.dart';
 import 'package:smart_grocery_map/res/colors.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,7 +25,8 @@ class _CompanyInventoryScreenState extends State<CompanyInventoryScreen> {
   Future<String> _getData() async {
     // Url: http://localhost:8000/api/company/inventory/query
     // For emulator: http://10.0.2.2:8000/api/company/inventory/query
-    var uri = Uri.parse('http://localhost:8000/api/company/inventory/query');
+    var uri =
+        Uri.parse('http://10.0.2.2:8000/api/company/inventory/query');
     var request = http.MultipartRequest('POST', uri)
       ..fields['companyUsername'] = Globals.companyUsername;
     http.Response response =
@@ -57,11 +59,7 @@ class _CompanyInventoryScreenState extends State<CompanyInventoryScreen> {
         centerTitle: true,
         title: const Text('Title here'),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        backgroundColor: appAccent,
-        label: const Text('Add Product'),
-      ),
+      floatingActionButton: const CompanyCreateItemFloatingActionButton(),
       body: Padding(
         padding:
             const EdgeInsets.only(left: 12, right: 12, top: 12, bottom: 12),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './ChangeStore.dart';
-import './StoreItems.dart';
+import 'change_store.dart';
+import 'store_items.dart';
 
 class StoreScreen extends StatelessWidget {
   static String tag="home_page";

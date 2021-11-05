@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import './customer_signup_screen.dart';
 import '/res/colors.dart';
 import '/res/styles.dart';
-import '/screens/user-home/NavBar.dart';
+import '../user-home/nav_bar.dart';
 import 'components/auth_button.dart';
 import 'components/text_input_field.dart';
 import 'package:smart_grocery_map/global.dart';
@@ -47,7 +47,7 @@ class _CustomerLoginScreenState extends State<CustomerLoginScreen> {
     try {
       // Url: http://localhost:8000/api/user/login
       // For emulator: http://10.0.2.2:8000/api/user/login
-      var uri = Uri.parse('http://localhost:8000/api/customer/login');
+      var uri = Uri.parse('http://10.0.2.2:8000/api/customer/login');
       var request = http.MultipartRequest('POST', uri)
         ..fields['username'] = _usernameController.text
         ..fields['password'] = _passwordController.text;
