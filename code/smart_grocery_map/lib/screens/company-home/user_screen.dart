@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 class UserScreen extends StatelessWidget {
   /* void _getCompanyInfo() {
-    var uri = Uri.parse('http://http://10.0.2.2:8000/api/company/profile');
+    var uri = Uri.parse('http://10.0.2.2:8000/api/company/profile');
     
   } */
 

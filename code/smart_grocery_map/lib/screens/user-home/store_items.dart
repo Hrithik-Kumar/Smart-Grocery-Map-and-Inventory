@@ -6,8 +6,7 @@ import '/global.dart';
 
 Future<Commodities> getCompanyItems(var input) async {
   try {
-    var uri =
-        Uri.parse('http://http://10.0.2.2:8000/api/company/inventory/query');
+    var uri = Uri.parse('http://10.0.2.2:8000/api/company/inventory/query');
     var request = http.MultipartRequest('POST', uri)
       ..fields['company_username'] = input;
     http.Response response =
@@ -60,8 +59,7 @@ class StoreItemsState extends State<StoreItems> {
 
   void _addItems(var itemName, var i) async {
     try {
-      var uri =
-          Uri.parse('http://10.0.2.2:8000/api/customer/usercart/modify');
+      var uri = Uri.parse('http://10.0.2.2:8000/api/customer/usercart/modify');
       var request = http.MultipartRequest('POST', uri)
         ..fields['username'] = Globals.customerUsername
         ..fields['company_username'] = companyUsername

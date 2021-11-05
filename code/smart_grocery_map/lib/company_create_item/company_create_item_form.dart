@@ -265,7 +265,7 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
     String shelf = _shelfController.text;
 
     var uri = Uri.parse('http://10.0.2.2:8000/api/company/inventory/create');
-    // var uri = Uri.parse('http://http://10.0.2.2:8000/api/company/inventory/create');
+    // var uri = Uri.parse('http://10.0.2.2:8000/api/company/inventory/create');
 
     var request = http.MultipartRequest('POST', uri)
       ..fields['company_username'] = companyUsername
