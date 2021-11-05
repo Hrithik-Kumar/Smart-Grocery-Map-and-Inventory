@@ -32,10 +32,11 @@ Technologies we use include:
     $ cd code/backend/SmartGroceryApp
     $ python manage.py runserver
     ```
-    - go into the Flutter project directory and run the app
+    - go into the Flutter project directory and run the app on emulator
     ```sh
     $ cd code/smart_grocery_map
     $ flutter run -d chrome --web-port=3001 lib/main.dart
+    $ flutter run -d emulator-5554 lib/main.dart
     ```
 
 ## Contribution

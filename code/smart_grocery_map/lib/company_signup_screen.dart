@@ -246,7 +246,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                         // print("Store Location: " + sLoc);
 
                         var uri = Uri.parse(
-                            'http://http://10.0.2.2:8000/api/company/signup');
+                            'http://10.0.2.2:8000/api/company/signup');
                         var request = http.MultipartRequest('POST', uri)
                           ..fields['username'] = user
                           ..fields['password'] = pass
