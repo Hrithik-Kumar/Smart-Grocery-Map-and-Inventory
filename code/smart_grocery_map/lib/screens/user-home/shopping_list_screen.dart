@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:smart_grocery_map/screens/user-home/filter_by_item.dart';
+
 class ShoppingListScreen extends StatefulWidget {
   ShoppingListScreen({Key? key, this.title = 'grocery list'}) : super(key: key);
 
@@ -324,7 +326,7 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      /*appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
 
@@ -332,7 +334,39 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
           icon: new Icon(Icons.search, color: Colors.grey),
           onPressed: () {},
         ),
-      ),
+
+
+
+      ),*/
+
+
+          appBar: AppBar(
+              title: Padding(
+                padding: EdgeInsets.only(top: 2,bottom: 2,left: 16),
+                child: Container(
+                  height: 35,
+                  width:  MediaQuery.of(context).size.width-64,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20)
+                  ),
+                  child: InkWell(
+                    child: Row(
+                      children: <Widget>[
+                        Padding(padding: EdgeInsets.only(left: 10,right: 10),
+                            child: Icon(Icons.search,color: Colors.black)),
+                        Text("search",style: TextStyle(color: Colors.grey,fontSize: 15),)
+                      ],
+                    ),
+                    onTap: (){
+                      showSearch(context: context,delegate: filter_by_item());
+                    },
+                  ),
+                ),
+              )
+          ),
+
+
       body: Center(
         child: Column(children: <Widget>[
           createTitle('Current grocery list:'),

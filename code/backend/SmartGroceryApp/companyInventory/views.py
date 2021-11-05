@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from .models import companyInventory
 from django.views.decorators import csrf
 from django.views.decorators.csrf import csrf_exempt
-
+from django.core import serializers
 from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
@@ -237,3 +237,100 @@ def company_inventory_delete_item(request):
             return JsonResponse({'status': 'unable to remove the item'}, status=400)
     else:
         return JsonResponse({'status': 'item does not exist in the database'}, status=401)
+    
+
+@csrf_exempt
+def company_inventory_query(request):
+
+    if request.method != 'POST':
+        return JsonResponse({'status': 'did not receive a POST request'}, status=403)
+
+    company_username = request.GET.get('company_username')
+
+
+    if company_username is None:
+        return JsonResponse({'status': 'no company was given'}, status=400)
+
+    # if company.objects.filter(username=username):
+    #     return JsonResponse({'status': 'username already exists'}, status=400)
+
+    q = companyInventory.objects.filter(company_username = company_username)
+
+
+    company_dicts = list(q.values())  # A list of dictionaries, each index is an entry
+    # print(company_dict)
+
+    if len(company_dicts) == 0:
+        return JsonResponse({'status': 'No items in company'}, status=404)
+
+    items = []
+
+    
+
+    for comp_dict in company_dicts:
+        items.append(list(comp_dict.values()))
+    
+
+    return JsonResponse({
+            'status': 'success',
+            'items': items
+        }, 
+        status=201)
+    
+    
+@csrf_exempt  
+def show_item(request):
+    
+    if request.method != 'POST':
+        return JsonResponse({'status': 'did not receive a GET request'}, status=403)
+    try:
+        product_id = request.POST.get('id')
+    except:
+        return JsonResponse({'status': 'unable to fetch the item id'}, status=500)
+        
+    product = companyInventory.objects.filter(pk=product_id)
+        
+    if product:
+        return JsonResponse({'status': 'success', 'product':list(product.values())}, status=201)
+    else: 
+        return JsonResponse({'status': 'unable to show the item'}, status=401)
+        
+
+@csrf_exempt
+def search_item(request):
+
+    if request.method != 'POST':
+        return JsonResponse({'status': 'did not receive a GET request'}, status=403)
+
+
+    try:
+        product_name = request.POST.get('product_name')
+    except:
+        return JsonResponse({'status': 'unable to fetch the item id'}, status=500)
+    
+    products = companyInventory.objects.filter(product_name__icontains = product_name)
+
+
+    product_dicts = list(products.values())  # A list of dictionaries, each index is an product item
+    # print(company_dict)
+
+    if len(product_dicts) == 0:
+        return JsonResponse({'status': 'No such items in the inventory'}, status=404)
+
+    items = []
+
+    for product_dict in product_dicts:
+        items.append(list(product_dict.values()))
+    
+
+    return JsonResponse({
+            'status': 'success',
+            'items': items
+        }, 
+        status=201)
+
+
+        
+        
+        
+        
