@@ -5,4 +5,5 @@
 class Globals {
   static String customerUsername = "";
   static String companyUsername = "";
+  static List<dynamic> customerItems = [];
 }

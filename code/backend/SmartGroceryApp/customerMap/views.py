@@ -20,12 +20,13 @@ def customer_get_item_locations(request):
     customer_items = list(userCart.objects.filter(
         username=customer_username).values('company_username', 'product_name'))
 
+
     item_data_list = []
 
     for customer_item_dict in customer_items:
         item_data = companyInventory.objects.filter(
             company_username=customer_item_dict["company_username"],
-            product_name=customer_item_dict["product_name"]).values('product_name', 'aisle', 'shelf').get()
+            product_name=customer_item_dict["product_name"]).values('company_username', 'product_name', 'aisle', 'shelf').get()
 
         item_data_list.append(item_data)
 
