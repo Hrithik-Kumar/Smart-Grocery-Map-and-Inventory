@@ -26,14 +26,6 @@ As Peter(a customer), I would like to get a plan of how to get all items in my g
 
 + Related persona: Peter Walker
 
-# Map Creation
-### MakeMap:
-As Joan Green(the administrator), I would like to make a map based on information the company provides to the database, so that users can find specific locations, prices, and descriptions of items in that company.
-
-- CoS: The users can choose items and check their details by clicking them on the map UI.
-
-+ Related persona: Joan Green
-
 # Inventory Edit
 ### CheckItem:
 As Joan Green(the administrator), I would like to check the modified information about the price, location, and description of an item in the database before displaying that to the customers, so that I can ensure the information on the app is reliable.
