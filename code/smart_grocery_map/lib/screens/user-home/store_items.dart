@@ -6,7 +6,7 @@ import '/global.dart';
 
 Future<Commodities> getCompanyItems(var input, var which, var type) async {
   try {
-    var request;
+    var request; // switches query based on toggled buttons
     if (which == null) {
       which = "all";
     }
@@ -22,7 +22,7 @@ Future<Commodities> getCompanyItems(var input, var which, var type) async {
       request.fields['product_type'] = type;
     }
     http.Response response =
-    await http.Response.fromStream(await request.send());
+        await http.Response.fromStream(await request.send());
     if (response.statusCode == 201) {
       var itemNameList = [];
       var priceList = [];
@@ -95,7 +95,7 @@ class StoreItemsState extends State<StoreItems> {
         ..fields['product_name'] = itemName
         ..fields['quantity'] = quantityList[i].toString();
       http.Response response =
-      await http.Response.fromStream(await request.send());
+          await http.Response.fromStream(await request.send());
       if (response.statusCode == 200) {
         // Success
         _showSnackbar('Success');
@@ -366,8 +366,8 @@ class StoreItemsState extends State<StoreItems> {
   Widget build(BuildContext context) {
     this.futureList =
         getCompanyItems(companyUsername, which, type).whenComplete(() {
-          setState(() => _body = body());
-        });
+      setState(() => _body = body());
+    });
     _body = body();
     return _body;
   }
