@@ -86,19 +86,6 @@ class StoreItemsState extends State<StoreItems> {
       ..showSnackBar(SnackBar(content: Text(message)));
   }
 
-  /* Widget createSaveButton() {
-    return (
-      TextButton(
-        onPressed: () {},
-        child: Text('Save'),
-        style: TextButton.styleFrom(
-          primary: Colors.black,
-          textStyle: const TextStyle(fontSize: 20),
-        ),
-      )
-    );
-  } */
-
   Widget createRowItem(int quantity, var itemName, int i) {
     return Row(
       children: [
@@ -212,35 +199,35 @@ class StoreItemsState extends State<StoreItems> {
           vertical: 100.0,
         ),
         child: FutureBuilder<Commodities>(
-            future: futureList,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                var a = <Widget>[];
+          future: futureList,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              var a = <Widget>[];
+              a..add(
+                Text(
+                  "What We Sell",
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              );
+              for (int i = 0; i < snapshot.data!.priceList.length; i++) {
                 a
-                  ..add(
-                    Text(
-                      "What We Sell",
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  );
-                for (int i = 0; i < snapshot.data!.priceList.length; i++) {
-                  a
-                    ..add(SizedBox(
-                      height: 10.0,
-                    ));
-                  quantityList.add(0);
-                  a
-                    ..add(createRowItem(this.quantityList[i],
-                        snapshot.data!.itemNameList[i], i));
-                }
-                return Column(children: a);
+                  ..add(SizedBox(
+                    height: 10.0,
+                  ));
+                quantityList.add(0);
+                a
+                  ..add(createRowItem(this.quantityList[i],
+                      snapshot.data!.itemNameList[i], i));
               }
-              return const CircularProgressIndicator();
-            }),
+              return Column(children: a);
+            }
+            return const CircularProgressIndicator();
+          }
+        ),
       ),
     );
   }
