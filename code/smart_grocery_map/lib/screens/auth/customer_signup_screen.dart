@@ -93,8 +93,7 @@ class CustomerSignUpScreenState extends State<CustomerSignUpScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  makeTitleAndBackButton(
-                      "Smart Grocery - Customer Signup", context),
+                  makeTitleAndBackButton("Customer Signup", context),
 
                   // Wrap IconButton and TitleBar in a thing
                   // Add TextFormFields and ElevatedButton here.
@@ -169,8 +168,8 @@ class CustomerSignUpScreenState extends State<CustomerSignUpScreen> {
                       hintStyle: formFieldHintTextStyle,
                       errorStyle: formFieldHintTextStyle,
                       labelStyle: formFieldLabelTextStyle,
-                      hintText: 'Enter the Manager Name',
-                      labelText: 'Manager Name *',
+                      hintText: 'Enter the First Name',
+                      labelText: 'First Name *',
                     ),
                     style: formFieldTextStyle,
                     // The validator receives the text that the user has entered.
@@ -189,8 +188,8 @@ class CustomerSignUpScreenState extends State<CustomerSignUpScreen> {
                       hintStyle: formFieldHintTextStyle,
                       errorStyle: formFieldHintTextStyle,
                       labelStyle: formFieldLabelTextStyle,
-                      hintText: 'Enter the Store Name',
-                      labelText: 'Store Name *',
+                      hintText: 'Enter the Last Name',
+                      labelText: 'Last Name *',
                     ),
                     style: formFieldTextStyle,
                     // The validator receives the text that the user has entered.
@@ -219,22 +218,21 @@ class CustomerSignUpScreenState extends State<CustomerSignUpScreen> {
                         String lastname = lastNameController.text;
 
                         // DELETE LATER
-                        // print("Username: " + user);
-                        // print("Password: " + pass);
-                        // print("Email: " + email);
-                        // print("Manager: " + manager);
-                        // print("Store Name: " + sName);
-                        // print("Store Location: " + sLoc);
+                        print("Username: " + user);
+                        print("Password: " + pass);
+                        print("Email: " + email);
+                        print("First Name: " + firstname);
+                        print("Last Name: " + lastname);
 
                         var uri = Uri.parse(
-                            'http://localhost:8000/api/customer/signup');
+                            'http://10.0.2.2:8000/api/customer/signup');
                         var request = http.MultipartRequest('POST', uri)
                           ..fields['username'] = user
                           ..fields['password'] = pass
                           ..fields['email'] = email
                           ..fields['firstname'] = firstname
                           ..fields['lastname'] = lastname;
-                        
+
                         http.Response response = await http.Response.fromStream(
                             await request.send());
 

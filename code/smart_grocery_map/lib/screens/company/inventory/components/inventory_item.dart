@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_grocery_map/res/colors.dart';
 
-import '../companyDeleteItem.dart';
+import '../company_delete_item.dart';
 
 class InventoryItem extends StatelessWidget {
   const InventoryItem({Key? key}) : super(key: key);

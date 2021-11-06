@@ -7,7 +7,7 @@ import '/res/styles.dart';
 import 'components/auth_button.dart';
 import 'package:http/http.dart' as http;
 import 'components/text_input_field.dart';
-import '/screens/company-home/NavBar.dart';
+import '../company-home/nav_bar.dart';
 import 'package:smart_grocery_map/global.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -46,7 +46,8 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       // Url: http://localhost:8000/api/company/login
       // For emulator: http://10.0.2.2:8000/api/company/login
-      var uri = Uri.parse('http://localhost:8000/api/company/login');
+      // var uri = Uri.parse('http://localhost:8000/api/company/login');
+      var uri = Uri.parse('http://10.0.2.2:8000/api/company/login');
       var request = http.MultipartRequest('POST', uri)
         ..fields['username'] = _usernameController.text
         ..fields['password'] = _passwordController.text;
