@@ -261,20 +261,7 @@ class StoreItemsState extends State<StoreItems> {
       },
     );
   }
-
-  /* Widget createSaveButton() {
-    return (
-      TextButton(
-        onPressed: () {},
-        child: Text('Save'),
-        style: TextButton.styleFrom(
-          primary: Colors.black,
-          textStyle: const TextStyle(fontSize: 20),
-        ),
-      )
-    );
-  } */
-
+  
   Widget createRowItem(int quantity, var itemName, int i) {
     return Row(
       children: [
