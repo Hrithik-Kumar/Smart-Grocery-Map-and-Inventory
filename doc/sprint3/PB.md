@@ -48,5 +48,5 @@ As Joan Green(the administrator), I would like to check the modified information
 As Joan Green(the administrator), I would like to make a layout to navigate the users, so that they can get proper instructions during the use.
 
 - CoS: The users can get instructions when they need help operating the app.
-- 
+
 + Related persona: Joan Green
