@@ -30,7 +30,6 @@ Future<Commodities> getCompanyItems(var input, var which, var type) async {
         itemNameList.add(item[2]);
         priceList.add(item[5]);
       }
-      await Future.delayed(Duration(seconds: 1));
       return Commodities.construct(itemNameList, priceList);
     } else {
       throw Exception('Fail to load items');
@@ -132,7 +131,9 @@ class StoreItemsState extends State<StoreItems> {
                       color: Colors.grey[300],
                       height: 40,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          change("some", "fruit", toggle);
+                        },
                         child: Text("Fruits", textAlign: TextAlign.center),
                       ),
                     ),
@@ -175,7 +176,9 @@ class StoreItemsState extends State<StoreItems> {
                       color: Colors.grey[300],
                       height: 40,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          change("some", "meat", toggle);
+                        },
                         child: Text("Meat", textAlign: TextAlign.center),
                       ),
                     ),
@@ -193,7 +196,9 @@ class StoreItemsState extends State<StoreItems> {
                       color: Colors.grey[300],
                       height: 40,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          change("some", "dairy", toggle);
+                        },
                         child: Center(
                           child: Text(
                             "Dairy",
@@ -216,7 +221,9 @@ class StoreItemsState extends State<StoreItems> {
                       color: Colors.grey[300],
                       height: 40,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          change("some", "grains", toggle);
+                        },
                         child: Text("Grains", textAlign: TextAlign.center),
                       ),
                     ),
@@ -234,7 +241,9 @@ class StoreItemsState extends State<StoreItems> {
                       color: Colors.grey[300],
                       height: 40,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          change("some", "test", toggle);
+                        },
                         child: Center(
                           child: Text(
                             "Other",
