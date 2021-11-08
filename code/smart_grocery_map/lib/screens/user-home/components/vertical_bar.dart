@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class VeritcalBar extends StatelessWidget {
+class VerticalBar extends StatelessWidget {
   final Color color;
-  const VeritcalBar({
+  const VerticalBar({
     Key? key,
     this.color = Colors.brown,
   }) : super(key: key);

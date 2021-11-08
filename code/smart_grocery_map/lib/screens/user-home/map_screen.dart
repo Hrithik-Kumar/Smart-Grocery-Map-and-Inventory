@@ -1,11 +1,51 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:smart_grocery_map/global.dart';
 import 'package:smart_grocery_map/screens/user-home/components/cashier.dart';
 import 'package:smart_grocery_map/screens/user-home/components/entry_exit.dart';
-import 'package:smart_grocery_map/screens/user-home/components/fruits_and_veg.dart';
 import 'package:smart_grocery_map/screens/user-home/components/vertical_bar.dart';
+import 'package:http/http.dart' as http;
 
-class MapScreen extends StatelessWidget {
+class MapScreen extends StatefulWidget {
   const MapScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MapScreen> createState() => _MapScreenState();
+}
+
+class _MapScreenState extends State<MapScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _getShoppingList();
+  }
+
+  void _getShoppingList() async {
+    try {
+      // Url: http://10.0.2.2:8000/api/customer/getItemLocations
+      Uri uri = Uri.parse('http://10.0.2.2:8000/api/customer/getItemLocations');
+      var request = http.MultipartRequest('POST', uri)
+        ..fields['customer_username'] = Globals.customerUsername;
+      http.Response response =
+          await http.Response.fromStream(await request.send());
+      if (response.statusCode == 200) {
+        print('Success');
+        print(response.body);
+      } else {
+        Map dataMap = jsonDecode(response.body);
+        _showSnackbar(dataMap['status']);
+      }
+    } catch (e) {
+      _showSnackbar(e.toString());
+    }
+  }
+
+  void _showSnackbar(String message) {
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,37 +65,37 @@ class MapScreen extends StatelessWidget {
                       child: Container(),
                     ),
                     const Expanded(
-                      child: VeritcalBar(),
+                      child: VerticalBar(),
                     ),
                     Expanded(
                       child: Container(),
                     ),
                     const Expanded(
-                      child: VeritcalBar(),
+                      child: VerticalBar(),
                     ),
                     Expanded(
                       child: Container(),
                     ),
                     const Expanded(
-                      child: VeritcalBar(),
+                      child: VerticalBar(),
                     ),
                     Expanded(
                       child: Container(),
                     ),
                     const Expanded(
-                      child: VeritcalBar(),
+                      child: VerticalBar(),
                     ),
                     Expanded(
                       child: Container(),
                     ),
                     const Expanded(
-                      child: VeritcalBar(),
+                      child: VerticalBar(),
                     ),
                     Expanded(
                       child: Container(),
                     ),
                     const Expanded(
-                      child: VeritcalBar(),
+                      child: VerticalBar(),
                     ),
                     Expanded(
                       child: Container(),
@@ -90,13 +130,13 @@ class MapScreen extends StatelessWidget {
                       child: Container(),
                     ),
                     const Expanded(
-                      child: VeritcalBar(),
+                      child: VerticalBar(),
                     ),
                     Expanded(
                       child: Container(),
                     ),
                     const Expanded(
-                      child: VeritcalBar(),
+                      child: VerticalBar(),
                     ),
                     Expanded(
                       child: Container(),
