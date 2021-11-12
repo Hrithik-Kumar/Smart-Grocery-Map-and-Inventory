@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:smart_grocery_map/global.dart';
+import 'package:smart_grocery_map/models/map_item.dart';
 import 'package:smart_grocery_map/screens/user-home/components/cashier.dart';
 import 'package:smart_grocery_map/screens/user-home/components/entry_exit.dart';
 import 'package:smart_grocery_map/screens/user-home/components/vertical_bar.dart';
@@ -15,9 +16,15 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  List<MapItem> items = [];
   @override
   void initState() {
     super.initState();
+    // Future.delayed(const Duration(seconds: 3), () {
+    //   setState(() {
+    //     items = MapItem.getDummyList();
+    //   });
+    // });
     _getShoppingList();
   }
 
@@ -30,8 +37,16 @@ class _MapScreenState extends State<MapScreen> {
       http.Response response =
           await http.Response.fromStream(await request.send());
       if (response.statusCode == 200) {
-        print('Success');
-        print(response.body);
+        Map dataMap = jsonDecode(response.body);
+        dataMap['customer_items'].forEach((element) {
+          MapItem mapItem = MapItem(
+            productName: element['product_name'],
+            aisle: element['aisle'],
+            position: element['shelf'],
+          );
+          items.add(mapItem);
+        });
+        setState(() {});
       } else {
         Map dataMap = jsonDecode(response.body);
         _showSnackbar(dataMap['status']);
@@ -45,6 +60,20 @@ class _MapScreenState extends State<MapScreen> {
     ScaffoldMessenger.of(context)
       ..removeCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  List<MapItem> _getSpecifiedAisleItems(int aisle) {
+    if (items.isNotEmpty) {
+      List<MapItem> list =
+          items.where((element) => element.aisle == aisle).toList();
+      if (list.isNotEmpty) {
+        return list;
+      } else {
+        return [];
+      }
+    } else {
+      return [];
+    }
   }
 
   @override
@@ -64,38 +93,38 @@ class _MapScreenState extends State<MapScreen> {
                     Expanded(
                       child: Container(),
                     ),
-                    const Expanded(
-                      child: VerticalBar(),
+                    Expanded(
+                      child: VerticalBar(items: _getSpecifiedAisleItems(1)),
                     ),
                     Expanded(
                       child: Container(),
                     ),
-                    const Expanded(
-                      child: VerticalBar(),
+                    Expanded(
+                      child: VerticalBar(items: _getSpecifiedAisleItems(2)),
                     ),
                     Expanded(
                       child: Container(),
                     ),
-                    const Expanded(
-                      child: VerticalBar(),
+                    Expanded(
+                      child: VerticalBar(items: _getSpecifiedAisleItems(3)),
                     ),
                     Expanded(
                       child: Container(),
                     ),
-                    const Expanded(
-                      child: VerticalBar(),
+                    Expanded(
+                      child: VerticalBar(items: _getSpecifiedAisleItems(4)),
                     ),
                     Expanded(
                       child: Container(),
                     ),
-                    const Expanded(
-                      child: VerticalBar(),
+                    Expanded(
+                      child: VerticalBar(items: _getSpecifiedAisleItems(5)),
                     ),
                     Expanded(
                       child: Container(),
                     ),
-                    const Expanded(
-                      child: VerticalBar(),
+                    Expanded(
+                      child: VerticalBar(items: _getSpecifiedAisleItems(6)),
                     ),
                     Expanded(
                       child: Container(),
@@ -129,14 +158,14 @@ class _MapScreenState extends State<MapScreen> {
                     Expanded(
                       child: Container(),
                     ),
-                    const Expanded(
-                      child: VerticalBar(),
+                    Expanded(
+                      child: VerticalBar(items: _getSpecifiedAisleItems(7)),
                     ),
                     Expanded(
                       child: Container(),
                     ),
-                    const Expanded(
-                      child: VerticalBar(),
+                    Expanded(
+                      child: VerticalBar(items: _getSpecifiedAisleItems(8)),
                     ),
                     Expanded(
                       child: Container(),
