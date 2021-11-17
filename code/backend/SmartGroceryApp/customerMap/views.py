@@ -30,3 +30,9 @@ def customer_get_item_locations(request):
         item_data_list.append(item_data)
 
     return JsonResponse({'status': 'success', 'customer_items': item_data_list}, status=200)
+
+@csrf_exempt
+def customer_get_paths(request):
+    
+    return JsonResponse({'status': 'success', 'customer_items': "hello"}, status=200)
+    pass
