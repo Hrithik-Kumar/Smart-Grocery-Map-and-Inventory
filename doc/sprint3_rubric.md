@@ -79,9 +79,9 @@
     - 1 mark  = one or more Sprint 1 stories do not have clearly defined or testable acceptance criteria
     - 0 marks = the majority of the Sprint1 stories do not have clearly defined or testable acceptance criteria
 
-    Your Mark: _ 1 https://mcsapps.utm.utoronto.ca/jira/browse/BAC-116 no description
+    Your Mark: _ 2
 
-  User Stories Total Mark: _8_ / 10
+  User Stories Total Mark: _9_ / 10
 
 ---
 ## Tracking on Jira  (max 24 marks) 
@@ -245,4 +245,4 @@ Tracking on Jira Total Mark: _22_ / 24
 
 ## Total Mark
 
-_85_ / 93
+_86_ / 93
