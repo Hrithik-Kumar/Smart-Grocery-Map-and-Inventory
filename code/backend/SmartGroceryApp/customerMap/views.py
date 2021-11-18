@@ -17,11 +17,13 @@ def customer_get_item_locations(request):
     if customer_username is None:
         return JsonResponse({'status': 'no customer username was given'}, status=400)
 
+    # query userCart to get all the products in the customer's cart
     customer_items = list(userCart.objects.filter(
         username=customer_username).values('company_username', 'product_name'))
 
     item_data_list = []
 
+    # query companyInventory to get the data (location) of each product
     for customer_item_dict in customer_items:
         item_data = companyInventory.objects.filter(
             company_username=customer_item_dict["company_username"],
