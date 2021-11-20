@@ -34,6 +34,27 @@ def customer_get_item_locations(request):
     return JsonResponse({'status': 'success', 'customer_items': item_data_list}, status=200)
 
 @csrf_exempt
+def customer_get_path_locations(request):
+    if request.method != 'POST':
+        return JsonResponse({'status': 'did not receive a POST request'}, status=403)
+
+    items_list = request.POST.getlist('items_list')
+    if items_list is None:
+        return JsonResponse({'status': 'no items were given'}, status=400)
+
+    # customer_items = list(userCart.objects.filter(
+    #     username=customer_username).values('company_username', 'product_name'))
+
+    items_location = []
+    
+    for item in items_list:
+        # item_location = companyInventory.objects.filter(product_name=item).values_list('product_name', 'aisle', 'shelf').get() 
+        item_location = list(companyInventory.objects.filter(product_name=item).values_list('product_name', 'aisle', 'shelf'))
+        items_location.append(item_location)
+        
+    return JsonResponse({'status': 'success', 'customer_items': items_location}, status=200)
+
+@csrf_exempt
 def customer_get_paths(request):
     if request.method != 'POST':
         return JsonResponse({'status': 'did not receive a POST request'}, status=403)
