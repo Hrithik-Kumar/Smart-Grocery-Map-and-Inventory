@@ -7,6 +7,7 @@ import 'package:smart_grocery_map/screens/user-home/components/cashier.dart';
 import 'package:smart_grocery_map/screens/user-home/components/entry_exit.dart';
 import 'package:smart_grocery_map/screens/user-home/components/vertical_bar.dart';
 import 'package:http/http.dart' as http;
+import 'package:smart_grocery_map/screens/user-home/routeplanningdistance.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({Key? key}) : super(key: key);
@@ -78,6 +79,22 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    var routeplanningDistanceButton = Padding(
+      padding: EdgeInsets.symmetric(vertical: 16.0),
+      child: Material(
+        borderRadius: BorderRadius.circular(30.0),
+        elevation: 5.0,
+        child: MaterialButton(
+          minWidth: 100.0,
+          height: 42.0,
+          onPressed: () => /*routeplanningdistance(),*/ Navigator.push(context, new MaterialPageRoute(builder: (context) => new routeplanningdistance())),
+          color: Colors.green,
+          child: Text('route by distance', style: TextStyle(color: Colors.white, fontSize: 15.0),),
+        ),
+      ),
+    );
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -199,7 +216,7 @@ class _MapScreenState extends State<MapScreen> {
                 const SizedBox(height: 30.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
+                  children: [
                     EntryExit(
                       text: Text(
                         'Entry',
@@ -207,6 +224,7 @@ class _MapScreenState extends State<MapScreen> {
                       ),
                       barColor: Colors.green,
                     ),
+                    routeplanningDistanceButton,
                     EntryExit(
                       text: Text(
                         'Exit',
@@ -214,6 +232,7 @@ class _MapScreenState extends State<MapScreen> {
                       ),
                       barColor: Colors.red,
                     ),
+
                   ],
                 ),
               ],
