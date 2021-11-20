@@ -17,6 +17,8 @@ Technologies we use include:
     $ cd code/smart_grocery_map
     $ flutter pub get
     ```
+    - use the recommended simulation device(Name: Pixel_2_API_30, Target: google_apis_playstore [Google Play] (API level 30), hw.lcd.width: 1080, hw.lcd.height: 1920)
+    
 3. Backend Setup:
     - Have [Python](https://www.python.org/downloads/) installed
     - Install Django, Pillow and django-cors-headers

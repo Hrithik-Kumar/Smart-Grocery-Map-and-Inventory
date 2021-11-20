@@ -1,7 +1,29 @@
 import 'package:flutter/material.dart';
 import 'company_inventory_screen.dart';
+import '../../company-home/nav_bar.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class CompanyDeleteItem extends StatelessWidget {
+  var id;
+
+  CompanyDeleteItem({Key? key, this.id}) : super(key: key);
+
+  void delete(var id) async {
+    var uri =
+        Uri.parse('http://10.0.2.2:8000/api/company/inventory/delete');
+    var request = http.MultipartRequest('POST', uri)
+      ..fields['id'] = id.toString();
+    http.Response response =
+        await http.Response.fromStream(await request.send());
+  }
+
+  /* void _showSnackbar(String message) {
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
+  } */
+
   @override
   Widget build(BuildContext context) {
     final info = Padding(
@@ -22,10 +44,11 @@ class CompanyDeleteItem extends StatelessWidget {
           minWidth: 200.0,
           height: 42.0,
           onPressed: () {
+            delete(this.id);
             Navigator.push(
                 context,
                 new MaterialPageRoute(
-                    builder: (context) => new CompanyInventoryScreen()));
+                    builder: (context) => NavBar()));
           },
           color: Colors.yellow,
           child: Text(
@@ -49,7 +72,7 @@ class CompanyDeleteItem extends StatelessWidget {
             Navigator.push(
                 context,
                 new MaterialPageRoute(
-                    builder: (context) => new CompanyInventoryScreen()));
+                    builder: (context) => NavBar()));
           },
           color: Colors.yellow,
           child: Text(
