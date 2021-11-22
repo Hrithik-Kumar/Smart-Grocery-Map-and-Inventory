@@ -150,7 +150,7 @@
     - 1 mark  = burndown chart present, matches Jira chart, but no explanations provided, or explanations are not adequate.
     - 0 marks = document not available or not containing a valid burndown chart
     
-    Your Mark: _1 doesn;t match JIRA
+    Your Mark: _2
 
   - Schedule (max 2 marks)
     - 2 marks = diagram present, critical path computed, and explantions are adequate.
@@ -245,4 +245,4 @@ Tracking on Jira Total Mark: _22_ / 24
 
 ## Total Mark
 
-_86_ / 93
+_87_ / 93
