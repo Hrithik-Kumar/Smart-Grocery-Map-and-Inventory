@@ -215,6 +215,7 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
             ),
           ),
         ),
+        backgroundColor: Colors.amber,
       ),
       body: Container(
         padding: EdgeInsets.symmetric(

@@ -157,6 +157,12 @@ class StoreScreen extends StatelessWidget {
           createRowItem("", "Apple", "Isle 1, Shelf 1"),
           SizedBox(height: 10.0,),
           createRowItem("", "Banana", "Isle 5, Shelf 4"),
+          SizedBox(height: 10.0,),
+          createRowItem("", "Bread", "Isle 1, Shelf 2"),
+          SizedBox(height: 10.0,),
+          createRowItem("", "Popcorn", "Isle 4, Shelf 5"),
+          SizedBox(height: 10.0,),
+          createRowItem("", "Chocolate", "Isle 4, Shelf 2"),
         ],
       ),
     );

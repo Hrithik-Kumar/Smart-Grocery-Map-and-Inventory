@@ -396,7 +396,7 @@ class StoreItemsState extends State<StoreItems> {
                       onPressed: () {
                         _bottomModal(context);
                       },
-                      child: Text('View a Catagory'),
+                      child: Text('View a Category'),
                       style: TextButton.styleFrom(
                         primary: Colors.black,
                         textStyle: const TextStyle(fontSize: 16),

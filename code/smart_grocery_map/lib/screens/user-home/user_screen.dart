@@ -69,7 +69,7 @@ class UserScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(context, new MaterialPageRoute(builder: (context) => new ProfilePage()));
                   },
-                  icon: Icon(Icons.local_convenience_store_rounded),
+                  icon: Icon(Icons.person),
                   label: Text("User\nView Profile"),
                   style: ElevatedButton.styleFrom(
                     primary: Colors.transparent,
