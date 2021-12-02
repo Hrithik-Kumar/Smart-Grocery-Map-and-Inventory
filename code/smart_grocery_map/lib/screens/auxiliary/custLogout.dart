@@ -3,6 +3,7 @@ import '/screens/auth/welcome_screen.dart';
 
 class CustLogout extends StatelessWidget{
 
+
   @override
   Widget build(BuildContext context) {
 
@@ -10,7 +11,7 @@ class CustLogout extends StatelessWidget{
       padding: EdgeInsets.all(8.0),
       child: Text(
         'Thanks for using our app!',
-        style: new TextStyle(color: Colors.white, fontSize: 20.0),
+        style: new TextStyle(color: Colors.black, fontSize: 20.0),
       ),
     );
 
@@ -18,7 +19,7 @@ class CustLogout extends StatelessWidget{
       padding: EdgeInsets.all(8.0),
       child: Text(
         "You have logged out at:",
-        style: new TextStyle(color: Colors.white, fontSize: 20.0),
+        style: new TextStyle(color: Colors.black, fontSize: 20.0),
       ),
     );
 
@@ -46,7 +47,7 @@ class CustLogout extends StatelessWidget{
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Material(
         borderRadius: BorderRadius.circular(30.0),
-        shadowColor: Colors.lightBlueAccent.shade100,
+        color: Colors.white,
         elevation: 5.0,
         child: MaterialButton(
           minWidth: 200.0,
@@ -64,12 +65,7 @@ class CustLogout extends StatelessWidget{
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.all(28.0),
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [
-                Colors.blue,
-                Colors.lightBlueAccent
-              ]
-          )
+              color: Colors.white,
       ),
       child: Column(children: <Widget>[
         thanks, info, timeInfo, LogInButton

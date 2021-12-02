@@ -130,28 +130,6 @@ class _ProfileScreenState extends State<ProfilePage> {
     _lastName.text = _oldLastname;
     _email.text = _oldEmail;
 
-    final LogOutButton = Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: Material(
-        borderRadius: BorderRadius.circular(30.0),
-        shadowColor: Colors.lightBlueAccent.shade100,
-        elevation: 5.0,
-        child: MaterialButton(
-          minWidth: 200.0,
-          height: 42.0,
-          onPressed: () {
-            Navigator.push(context,
-                new MaterialPageRoute(builder: (context) => new CustLogout()));
-          },
-          color: Colors.green,
-          child: Text(
-            'Log Out',
-            style: TextStyle(color: Colors.white, fontSize: 20.0),
-          ),
-        ),
-      ),
-    );
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -223,7 +201,6 @@ class _ProfileScreenState extends State<ProfilePage> {
               height: 4.0,
             ),
             createSaveButton(),
-            LogOutButton
           ],
         ),
       ),
