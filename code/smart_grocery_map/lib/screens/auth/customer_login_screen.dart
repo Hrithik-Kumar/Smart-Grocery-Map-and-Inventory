@@ -110,16 +110,6 @@ class _CustomerLoginScreenState extends State<CustomerLoginScreen> {
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                navblue,
-                appAccent,
-              ],
-            ),
-          ),
           child: SingleChildScrollView(
             child: Stack(
               children: [
@@ -134,7 +124,7 @@ class _CustomerLoginScreenState extends State<CustomerLoginScreen> {
                       const Text(
                         'Customer Sign In',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 30.0,
                           fontWeight: FontWeight.bold,
                         ),
@@ -213,7 +203,7 @@ class _CustomerLoginScreenState extends State<CustomerLoginScreen> {
         const Text(
           'Don\'t have an Account?',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 18.0,
             fontWeight: FontWeight.w400,
           ),
@@ -223,7 +213,7 @@ class _CustomerLoginScreenState extends State<CustomerLoginScreen> {
           child: const Text(
             'Sign Up',
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontSize: 18.0,
               fontWeight: FontWeight.bold,
             ),
