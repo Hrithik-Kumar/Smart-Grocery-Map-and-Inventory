@@ -156,7 +156,7 @@ class StoreItemsState extends State<StoreItems> {
                         },
                         child: Center(
                           child: Text(
-                            "Vegtables",
+                            "Vegetables",
                             textAlign: TextAlign.center,
                           ),
                         ),
