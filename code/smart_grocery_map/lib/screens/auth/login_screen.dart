@@ -115,8 +115,8 @@ class _LoginScreenState extends State<LoginScreen> {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                navblue,
-                appAccent,
+                Colors.white,
+                Colors.white,
               ],
             ),
           ),
@@ -134,8 +134,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       const Text(
                         'Company Sign In',
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30.0,
+                          color: yellow,
+                          fontSize: 36.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -180,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: IconButton(
                       onPressed: () => Navigator.pop(context),
                       icon: backIconChoice(),
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -213,7 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
         const Text(
           'Don\'t have an Account?',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 18.0,
             fontWeight: FontWeight.w400,
           ),
@@ -223,7 +223,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: const Text(
             'Sign Up',
             style: TextStyle(
-              color: Colors.white,
+              color: yellow,
               fontSize: 18.0,
               fontWeight: FontWeight.bold,
             ),

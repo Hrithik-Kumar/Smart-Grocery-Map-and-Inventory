@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:smart_grocery_map/res/colors.dart';
 
 Row makeTitleAndBackButton(String titleText, BuildContext context) {
   return Row(children: [
     IconButton(
-      icon: const Icon(Icons.arrow_back, color: Colors.white),
+      icon: const Icon(Icons.arrow_back, color: yellow),
       onPressed: () {
         Navigator.pop(context, "back");
       },
@@ -20,7 +21,7 @@ Row makeTitleAndBackButton(String titleText, BuildContext context) {
 }
 
 const TextStyle titleTextStyle = TextStyle(
-    color: Colors.white,
+    color: Colors.black,
     fontSize: 28.0,
     fontWeight: FontWeight.bold,
   );

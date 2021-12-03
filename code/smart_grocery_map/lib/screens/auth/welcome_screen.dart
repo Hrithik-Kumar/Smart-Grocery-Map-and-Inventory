@@ -4,6 +4,7 @@ import '/screens/auth/customer_login_screen.dart';
 import '/res/anims.dart';
 import '/res/colors.dart';
 import '/screens/auth/components/welcome_button.dart';
+import '/screens/auth/components/welcome_button1.dart';
 import '/screens/auth/login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -18,13 +19,13 @@ class WelcomeScreen extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              navblue,
-              appAccent,
+              Colors.white,
+              Colors.white,
             ],
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(48.0),
           child: Column(
             children: [
               Expanded(
@@ -33,8 +34,8 @@ class WelcomeScreen extends StatelessWidget {
               const Text(
                 'Smart Grocery',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 28.0,
+                  color: yellow,
+                  fontSize: 42.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -47,14 +48,14 @@ class WelcomeScreen extends StatelessWidget {
               ),
               WelcomeButton(
                 text: 'Continue as Company',
-                color: appAccent,
+                color: Colors.white,
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const LoginScreen()),
                 ),
               ),
               const SizedBox(height: 20.0),
-              WelcomeButton(
+              WelcomeButton1(
                 text: 'Continue as Customer',
                 color: navblue,
                 onPressed: () => Navigator.push(

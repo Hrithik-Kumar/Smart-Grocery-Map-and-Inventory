@@ -91,17 +91,19 @@ class _CompanyInventoryScreenState extends State<CompanyInventoryScreen> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: navblue.withOpacity(0.9),
+              color: Colors.grey,
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(10),
                 bottomRight: Radius.circular(10),
+                topRight: Radius.circular(10),
+                topLeft: Radius.circular(10),
               ),
             ),
             width: double.infinity,
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 8.0,
-                vertical: 4.0,
+                vertical: 8.0,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,7 +114,7 @@ class _CompanyInventoryScreenState extends State<CompanyInventoryScreen> {
                   ),
                   SizedBox(height: 2.0),
                   Text(
-                    price,
+                    "\$"+price,
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
@@ -120,11 +122,14 @@ class _CompanyInventoryScreenState extends State<CompanyInventoryScreen> {
                     ),
                   ),
                   SizedBox(width: 2.0),
+
                   GestureDetector(
-                    child: Container(
-                      width: 300,
+                    child:
+                    Container(
+                      alignment: Alignment.bottomRight,
+                      width: 400,
                       height: 20,
-                      child: const Icon(Icons.delete_outline),
+                      child: const Icon(Icons.delete_outline, color: Colors.white,),
                     ),
                     onTap: () {
                       Navigator.push(
@@ -172,32 +177,21 @@ class _CompanyInventoryScreenState extends State<CompanyInventoryScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0.0,
-        backgroundColor: navblue,
+        backgroundColor: yellow,
         centerTitle: true,
-        title: const Text('Title here'),
+        title: const Text('Items in Your Store'),
       ),
       floatingActionButton: const CompanyCreateItemFloatingActionButton(),
       body: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: 28.0,
-          vertical: 100.0,
+          horizontal: 24.0,
+          vertical: 24.0,
         ),
         child: FutureBuilder<Commodities>(
             future: futureList,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 var a = <Widget>[];
-                a
-                  ..add(
-                    Text(
-                      "Items in Your Store",
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  );
                 for (int i = 0; i < snapshot.data!.priceList.length; i++) {
                   a
                     ..add(

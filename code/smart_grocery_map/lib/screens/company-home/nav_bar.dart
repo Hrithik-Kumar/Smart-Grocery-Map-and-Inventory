@@ -36,10 +36,8 @@ class NavBarState extends State<NavBar> {
   Widget _bottomTab() {
     return ClipRRect(
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(40), 
-        topRight: Radius.circular(40), 
-        bottomLeft: Radius.circular(40),
-        bottomRight: Radius.circular(40),
+        topLeft: Radius.circular(24),
+        topRight: Radius.circular(24),
       ),
       child: BottomNavigationBar(
         currentIndex: _pageNumIndex,

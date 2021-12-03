@@ -14,9 +14,17 @@ class StoreScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             child: Container(
               color: Colors.grey[300],
-              child: Text(
-                quantity,
-                textAlign: TextAlign.center,
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Text(
+                  quantity,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                  ),
+                ),
               ),
             ),
           ),
@@ -31,20 +39,31 @@ class StoreScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 8,
-                    child: Text(
-                      itemName,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text(
+                        itemName,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                   ),
                   Expanded(
                     flex: 3,
-                    child: Text(
-                      position,
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        fontSize: 11,
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text(
+                        position,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 10,
+                        ),
                       ),
                     ),
                   )
@@ -80,17 +99,20 @@ class StoreScreen extends StatelessWidget {
                 child: Text(
                   "Walmart Super Center",
                   style: const TextStyle(
-                    fontSize: 15,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ],
           ),
+          SizedBox(height: 16,),
           MaterialButton(
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: 160,
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
                 //color: Colors.white,
                 image: DecorationImage(
                   image:AssetImage("assets/images/Grocery1.jpg"), 
@@ -98,14 +120,17 @@ class StoreScreen extends StatelessWidget {
                 ),
               ),
               child: Align(
-                alignment: Alignment.bottomLeft,
-                child: Text(
-                  "Items in Your Store",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17,
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Items in Your Store",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
                   ),
                 ),
               ),
@@ -115,22 +140,22 @@ class StoreScreen extends StatelessWidget {
               //setState(() => NavBarState._pageNumIndex = 1);
             }
           ),
-          SizedBox(height: 10.0,),
+          SizedBox(height: 24.0,),
           Text(
             "Items Found Here",
-            textAlign: TextAlign.left,
+            textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 10.0,),
+          SizedBox(height: 14.0,),
           createRowItem("1x", " Bagels | Kirkland Signature", "Isle 2, Shelf 65"),
-          SizedBox(height: 10.0,),
+          SizedBox(height: 14.0,),
           createRowItem("2x", " 2L Soda | Sprite", "Isle 1, Shelf 13"),
-          SizedBox(height: 10.0,),
+          SizedBox(height: 14.0,),
           createRowItem("2x", " Chicken | Kirkland Signature", "Isle 5, Shelf 5"),
-          SizedBox(height: 10.0,),
+          SizedBox(height: 14.0,),
           createRowItem("1x", " Socks | Kirkland Signature", "Isle 3, Shelf 35"),
         ],
       ),

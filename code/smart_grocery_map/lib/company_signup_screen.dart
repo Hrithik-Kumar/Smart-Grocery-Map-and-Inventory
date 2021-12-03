@@ -24,12 +24,12 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _obscureText = true;
   static const TextStyle titleTextStyle = TextStyle(
-    color: Colors.white,
+    color: yellow,
     fontSize: 28.0,
     fontWeight: FontWeight.bold,
   );
   static const TextStyle formFieldTextStyle = TextStyle(
-    color: Colors.white,
+    color: Colors.black,
     fontSize: 18.0,
   );
   static TextStyle formFieldHintTextStyle = TextStyle(
@@ -37,7 +37,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
     fontSize: 12.0,
   );
   static const TextStyle formFieldLabelTextStyle = TextStyle(
-    color: Colors.white,
+    color: Colors.black,
     fontSize: 18.0,
   );
 
@@ -78,8 +78,8 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              navblue,
-              appAccent,
+              Colors.white,
+              Colors.white,
             ],
           ),
         ),
@@ -95,6 +95,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(height: 40),
                   makeTitleAndBackButton(
                       "Smart Grocery - Company Signup", context),
 
@@ -105,7 +106,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                   TextFormField(
                     controller: usernameController,
                     decoration: InputDecoration(
-                      icon: const Icon(Icons.person, color: Colors.white),
+                      icon: const Icon(Icons.person, color: Colors.black),
                       hintStyle: formFieldHintTextStyle,
                       labelStyle: formFieldLabelTextStyle,
                       hintText: 'Enter your preferred username',
@@ -128,13 +129,13 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                     enableSuggestions: false,
                     autocorrect: false,
                     decoration: InputDecoration(
-                      icon: const Icon(Icons.password, color: Colors.white),
+                      icon: const Icon(Icons.password, color: Colors.black),
                       hintStyle: formFieldHintTextStyle,
                       labelStyle: formFieldLabelTextStyle,
                       hintText: 'Enter your password',
                       labelText: 'Password *',
                       suffixIcon: IconButton(
-                          icon: checkObscure(_obscureText), onPressed: _toggle),
+                          icon: checkObscure(_obscureText), onPressed: _toggle, color: Colors.black,),
                     ),
                     style: formFieldTextStyle,
                     // The validator receives the text that the user has entered.
@@ -151,7 +152,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                       controller: emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
-                        icon: const Icon(Icons.email, color: Colors.white),
+                        icon: const Icon(Icons.email, color: Colors.black),
                         hintStyle: formFieldHintTextStyle,
                         labelStyle: formFieldLabelTextStyle,
                         hintText: 'Enter your email address',
@@ -164,7 +165,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                   TextFormField(
                     controller: managerController,
                     decoration: InputDecoration(
-                      icon: const Icon(Icons.face, color: Colors.white),
+                      icon: const Icon(Icons.face, color: Colors.black),
                       hintStyle: formFieldHintTextStyle,
                       labelStyle: formFieldLabelTextStyle,
                       hintText: 'Enter the Manager Name',
@@ -183,7 +184,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                   TextFormField(
                     controller: storeNameController,
                     decoration: InputDecoration(
-                      icon: const Icon(Icons.storefront, color: Colors.white),
+                      icon: const Icon(Icons.storefront, color: Colors.black),
                       hintStyle: formFieldHintTextStyle,
                       labelStyle: formFieldLabelTextStyle,
                       hintText: 'Enter the Store Name',
@@ -202,7 +203,7 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                   TextFormField(
                     controller: storeLocController,
                     decoration: InputDecoration(
-                      icon: const Icon(Icons.location_on, color: Colors.white),
+                      icon: const Icon(Icons.location_on, color: Colors.black),
                       hintStyle: formFieldHintTextStyle,
                       labelStyle: formFieldLabelTextStyle,
                       hintText: 'Enter the Store Location',
@@ -279,7 +280,9 @@ class CompanySignUpScreenState extends State<CompanySignUpScreen> {
                         }
                       }
                     },
+
                     child: const Text('Register'),
+                    style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(yellow)),
                   ),
                 ],
               ),
@@ -318,9 +321,9 @@ String parseResponse(String value) {
 
 Icon checkObscure(bool obscure) {
   if (obscure) {
-    return const Icon(Icons.visibility_off, color: Colors.white);
+    return const Icon(Icons.visibility_off, color: yellow);
   } else {
-    return const Icon(Icons.visibility, color: Colors.white);
+    return const Icon(Icons.visibility, color: yellow);
   }
 }
 

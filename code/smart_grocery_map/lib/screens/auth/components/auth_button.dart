@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_grocery_map/res/colors.dart';
 
 class AuthButton extends StatelessWidget {
   final String text;
@@ -28,13 +29,13 @@ class AuthButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
-        color: Colors.white,
+        color: yellow,
         child: Text(
           text,
           style: TextStyle(
-            color: textColor,
+            color: Colors.white,
             letterSpacing: 1.5,
-            fontSize: 18.0,
+            fontSize: 20.0,
             fontWeight: FontWeight.bold,
           ),
         ),

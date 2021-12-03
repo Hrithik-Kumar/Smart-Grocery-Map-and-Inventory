@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import '/res/colors.dart';
 
-class WelcomeButton extends StatelessWidget {
+class WelcomeButton1 extends StatelessWidget {
   final String text;
   final Color color;
   final VoidCallback onPressed;
-  const WelcomeButton({
+  const WelcomeButton1({
     Key? key,
     required this.text,
     required this.color,
@@ -31,7 +31,7 @@ class WelcomeButton extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10), side:BorderSide(color: yellow, width: 4),),
       onPressed: onPressed,
       constraints: const BoxConstraints.tightFor(height: 55),
-      fillColor: color,
+      fillColor: yellow,
       elevation: 2,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -39,9 +39,9 @@ class WelcomeButton extends StatelessWidget {
           Text(
             text,
             style: const TextStyle(
-              color: yellow,
               fontSize: 20,
               fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
           )
         ],

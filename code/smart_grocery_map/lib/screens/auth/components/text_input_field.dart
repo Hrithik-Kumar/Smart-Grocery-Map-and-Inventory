@@ -44,18 +44,18 @@ class TextInputField extends StatelessWidget {
             keyboardType: textInputType,
             textInputAction: textInputAction,
             obscureText: obscureText,
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.black),
             decoration: InputDecoration(
               border: InputBorder.none,
               contentPadding: const EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(icon, color: Colors.white),
+              prefixIcon: Icon(icon, color: Colors.black),
               hintText: hintText,
               hintStyle: kHintTextStyle,
               suffixIcon: suffixIcon == null
                   ? null
                   : InkWell(
                       onTap: onEyePressed,
-                      child: Icon(suffixIcon, color: Colors.white),
+                      child: Icon(suffixIcon, color: Colors.black),
                     ),
             ),
           ),
