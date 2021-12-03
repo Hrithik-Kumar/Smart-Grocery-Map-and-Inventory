@@ -19,7 +19,7 @@ class routeplanningdistance extends StatelessWidget {
         child: MaterialButton(
           minWidth: 100.0,
           height: 42.0,
-          onPressed: () => Navigator.push(context, new MaterialPageRoute(builder: (context) => new NavBar())),
+          onPressed: () => Navigator.pop(context, "back"),
           color: Colors.green,
           child: Text('Move back to Map', style: TextStyle(color: Colors.white, fontSize: 15.0),),
         ),

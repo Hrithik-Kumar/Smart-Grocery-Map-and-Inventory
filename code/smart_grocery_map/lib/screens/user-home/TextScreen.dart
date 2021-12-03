@@ -11,20 +11,20 @@ class TextScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar:  AppBar(
-        title: Text("searching result page:"),
+        title: Text("Search Result"),
         backgroundColor: yellow,
       ),
       body: Padding(
           padding: EdgeInsets.all(16.0),
           child: Center(
             child:
-            Text("Here, you will look at the information of:    "+s+"\n"
-                +"the company for it is:    "+info[1]+"\n"
-            +"the prodcut name is:    "+info[2]+"\n"
-            +"the product type is:    "+info[3]+"\n"
-            +"description is:    "+info[4]+"\n"
-            +"price is:    "+info[5].toString()+"\n"
-            +"location is in Aisle: "+info[6].toString()+" Shelf: "+info[7].toString()),
+            Text("Information of:    "+s+"\n"
+                +"Company:    "+info[1]+"\n"
+            +"Product Name:    "+info[2]+"\n"
+            +"Product Type:    "+info[3]+"\n"
+            +"Description:    "+info[4]+"\n"
+            +"Price:    "+info[5].toString()+"\n"
+            +"Location: Aisle: "+info[6].toString()+" Shelf: "+info[7].toString()),
           )
       ),
     );
