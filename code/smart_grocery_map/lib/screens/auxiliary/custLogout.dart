@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_grocery_map/res/colors.dart';
 import '/screens/auth/welcome_screen.dart';
 
 class CustLogout extends StatelessWidget{
@@ -46,16 +47,13 @@ class CustLogout extends StatelessWidget{
     final LogInButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Material(
-        borderRadius: BorderRadius.circular(30.0),
-        color: Colors.white,
-        elevation: 5.0,
         child: MaterialButton(
           minWidth: 200.0,
           height: 42.0,
           onPressed: (){
             Navigator.push(context, new MaterialPageRoute(builder: (context) => new WelcomeScreen()));
           },
-          color: Colors.green,
+          color: yellow,
           child: Text('Log In', style: TextStyle(color: Colors.white, fontSize: 20.0),),
         ),
       ),

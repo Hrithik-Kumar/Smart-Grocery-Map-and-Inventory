@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_grocery_map/res/colors.dart';
 import 'package:smart_grocery_map/screens/auxiliary/custLogout.dart';
 import 'profile_page.dart';
 import 'package:http/http.dart' as http;
@@ -35,9 +36,6 @@ class UserScreen extends StatelessWidget {
     final LogOutButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Material(
-        borderRadius: BorderRadius.circular(30.0),
-        shadowColor: Colors.lightBlueAccent.shade100,
-        elevation: 5.0,
         child: MaterialButton(
           minWidth: 200.0,
           height: 42.0,
@@ -45,7 +43,7 @@ class UserScreen extends StatelessWidget {
             Navigator.push(context,
                 new MaterialPageRoute(builder: (context) => new CustLogout()));
           },
-          color: Colors.green,
+          color: yellow,
           child: Text(
             'Log Out',
             style: TextStyle(color: Colors.white, fontSize: 20.0),
@@ -80,7 +78,6 @@ class UserScreen extends StatelessWidget {
                 ),
               ],
             ),
-            createTitle('Settings'),
             LogOutButton
           ]
         )

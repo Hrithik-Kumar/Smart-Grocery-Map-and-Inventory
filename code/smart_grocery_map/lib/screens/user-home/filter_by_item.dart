@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:smart_grocery_map/res/colors.dart';
 import 'dart:async';
 import 'dart:convert';
 import '/global.dart';
@@ -12,9 +13,11 @@ class filter_by_item extends SearchDelegate {
 
   bool flag = false;
 
-  get recentSuggest => ["a"];
+  get recentSuggest => [];
 
 //  get searchList => ["apple","apple2"];
+
+
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -131,7 +134,9 @@ class filter_by_item extends SearchDelegate {
     final ThemeData theme = Theme.of(context);
     assert(theme != null);
     return theme.copyWith(
-      primaryColor: Colors.white,
+      indicatorColor: yellow,
+      primaryColor: yellow,
+      backgroundColor: yellow,
       primaryIconTheme: theme.primaryIconTheme.copyWith(color: Colors.grey),
       primaryColorBrightness: Brightness.light,
       primaryTextTheme: theme.textTheme,

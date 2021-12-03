@@ -22,6 +22,11 @@ class _CustomerLoginScreenState extends State<CustomerLoginScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  static TextStyle formFieldHintTextStyle = TextStyle(
+    color: Colors.grey[700],
+    fontSize: 12.0,
+  );
+
   IconData suffixIcon = Icons.visibility_off;
 
   @override

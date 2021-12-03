@@ -32,20 +32,20 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
   );
 
   static const TextStyle titleTextStyle = TextStyle(
-    color: Colors.white,
+    color: Colors.black,
     fontSize: 28.0,
     fontWeight: FontWeight.bold,
   );
   static const TextStyle formFieldTextStyle = TextStyle(
-    color: Colors.white,
+    color: Colors.black,
     fontSize: 18.0,
   );
   static TextStyle formFieldHintTextStyle = TextStyle(
-    color: Colors.grey[400],
+    color: Colors.grey[800],
     fontSize: 18.0,
   );
   static const TextStyle formFieldLabelTextStyle = TextStyle(
-    color: Colors.white,
+    color: Colors.black,
     fontSize: 18.0,
   );
 
@@ -64,7 +64,7 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
     return TextFormField(
       controller: _productNameController,
       decoration: InputDecoration(
-        icon: const Icon(Icons.text_fields, color: Colors.white),
+        icon: const Icon(Icons.text_fields, color: Colors.black),
         hintStyle: formFieldHintTextStyle,
         labelStyle: formFieldLabelTextStyle,
         hintText: 'Enter the product name',
@@ -84,7 +84,7 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
     return TextFormField(
       controller: _productTypeController,
       decoration: InputDecoration(
-        icon: const Icon(Icons.text_fields, color: Colors.white),
+        icon: const Icon(Icons.text_fields, color: Colors.black),
         hintStyle: formFieldHintTextStyle,
         labelStyle: formFieldLabelTextStyle,
         hintText: 'Enter the product type',
@@ -104,7 +104,7 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
     return TextFormField(
       controller: _descriptionController,
       decoration: InputDecoration(
-        icon: const Icon(Icons.text_fields, color: Colors.white),
+        icon: const Icon(Icons.text_fields, color: Colors.black),
         hintStyle: formFieldHintTextStyle,
         labelStyle: formFieldLabelTextStyle,
         hintText: 'Enter the product description',
@@ -124,7 +124,7 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
     return TextFormField(
       controller: _priceController,
       decoration: InputDecoration(
-        icon: const Icon(Icons.attach_money_outlined, color: Colors.white),
+        icon: const Icon(Icons.attach_money_outlined, color: Colors.black),
         hintStyle: formFieldHintTextStyle,
         labelStyle: formFieldLabelTextStyle,
         hintText: 'Enter the product price',
@@ -144,7 +144,7 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
     return TextFormField(
       controller: _aisleController,
       decoration: InputDecoration(
-        icon: const Icon(Icons.local_grocery_store, color: Colors.white),
+        icon: const Icon(Icons.local_grocery_store, color: Colors.black),
         hintStyle: formFieldHintTextStyle,
         labelStyle: formFieldLabelTextStyle,
         hintText: 'Enter the product aisle',
@@ -164,7 +164,7 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
     return TextFormField(
       controller: _shelfController,
       decoration: InputDecoration(
-        icon: const Icon(Icons.local_grocery_store, color: Colors.white),
+        icon: const Icon(Icons.local_grocery_store, color: Colors.black),
         hintStyle: formFieldHintTextStyle,
         labelStyle: formFieldLabelTextStyle,
         hintText: 'Enter the product shelf',
@@ -201,6 +201,7 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
 
   ElevatedButton _submitButton() {
     return ElevatedButton(
+      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(yellow)),
       onPressed: () {
         if (_formKey.currentState!.validate()) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -306,16 +307,6 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
 
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              navblue,
-              appAccent,
-            ],
-          ),
-        ),
         height: queryData.size.height,
         child: SingleChildScrollView(
           child: Form(
@@ -328,17 +319,29 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back, color: Colors.white),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    'Create Product',
-                    style: titleTextStyle,
-                  ),
+                  const SizedBox(height: 30),
+                  Row(children: [ // Back and Title
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back, color: yellow),
+                      onPressed: () {
+                        Navigator.pop(context, "back");
+                      },
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 70.0),
+                      child: Text(
+                          "Add Product",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 28.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                    ),
+                  ]),
+                  Padding(padding: EdgeInsets.only(left: 10.0, right: 10.0), 
+                  child: Column(children: [
                   _productNameFormField(),
                   _productTypeFormField(),
                   _descriptionFormField(),
@@ -346,11 +349,10 @@ class CompanyCreateItemFormState extends State<CompanyCreateItemForm> {
                   _aisleFormField(),
                   _shelfFormField(),
                   const SizedBox(height: 20),
-                  _imagePickButton(),
-                  _previewImage,
-                  const SizedBox(height: 20),
                   _submitButton(),
                 ],
+                  )),
+                ]
               ),
             ),
           ),

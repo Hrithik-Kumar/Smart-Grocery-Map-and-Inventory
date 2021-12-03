@@ -14,17 +14,9 @@ class StoreScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             child: Container(
               color: Colors.grey[300],
-              child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Text(
-                  quantity,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                  ),
-                ),
+              child: Text(
+                quantity,
+                textAlign: TextAlign.center,
               ),
             ),
           ),
@@ -39,31 +31,20 @@ class StoreScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 8,
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Text(
-                        itemName,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
+                    child: Text(
+                      itemName,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                   Expanded(
                     flex: 3,
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Text(
-                        position,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 10,
-                        ),
+                    child: Text(
+                      position,
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        fontSize: 11,
                       ),
                     ),
                   )
@@ -149,14 +130,18 @@ class StoreScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 14.0,),
-          createRowItem("1x", " Bagels | Kirkland Signature", "Isle 2, Shelf 65"),
-          SizedBox(height: 14.0,),
-          createRowItem("2x", " 2L Soda | Sprite", "Isle 1, Shelf 13"),
-          SizedBox(height: 14.0,),
-          createRowItem("2x", " Chicken | Kirkland Signature", "Isle 5, Shelf 5"),
-          SizedBox(height: 14.0,),
-          createRowItem("1x", " Socks | Kirkland Signature", "Isle 3, Shelf 35"),
+          SizedBox(height: 10.0,),
+          createRowItem("", "Orange", "Aisle 1, Shelf 1"),
+          SizedBox(height: 10.0,),
+          createRowItem("", "Apple", "Aisle 1, Shelf 1"),
+          SizedBox(height: 10.0,),
+          createRowItem("", "Banana", "Aisle 5, Shelf 4"),
+          SizedBox(height: 10.0,),
+          createRowItem("", "Steak", "Aisle 1, Shelf 2"),
+          SizedBox(height: 10.0,),
+          createRowItem("", "Pork", "Aisle 4, Shelf 5"),
+          SizedBox(height: 10.0,),
+          createRowItem("", "Chicken", "Aisle 4, Shelf 2"),
         ],
       ),
     );

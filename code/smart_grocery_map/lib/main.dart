@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_grocery_map/res/colors.dart';
 import '/screens/auth/welcome_screen.dart';
 //import '/screens/home/NavBar.dart';
 
@@ -13,6 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: yellow,
+        appBarTheme: const AppBarTheme(
+          color: yellow,
+        )
+      ),
       title: 'Smart Grocery',
       debugShowCheckedModeBanner: false,
       home: WelcomeScreen(),

@@ -111,7 +111,7 @@ class StoreScreen extends StatelessWidget {
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: 160,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 //color: Colors.white,
                 image: DecorationImage(
                   image:AssetImage("assets/images/Grocery1.jpg"), 
@@ -125,7 +125,7 @@ class StoreScreen extends StatelessWidget {
                   ),
                 ], */
               ),
-              child: Align(
+              child: Padding(padding: EdgeInsets.only(left: 15.0, bottom: 3.0), child: Align(
                 alignment: Alignment.bottomLeft,
                 child: Text(
                   "Browse This Store's Items",
@@ -134,9 +134,16 @@ class StoreScreen extends StatelessWidget {
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 17,
+                    shadows: <Shadow>[
+                      Shadow(
+                        color: Colors.black.withOpacity(0.60),
+                        offset: Offset(-2, 1),
+                        blurRadius: 4.2,
+                      )
+                    ],
                   ),
                 ),
-              ),
+              ),),
             ),
             onPressed:(){
               Navigator.push(context, new MaterialPageRoute(builder: (context) => new StoreItems()));
@@ -152,17 +159,19 @@ class StoreScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10.0,),
-          createRowItem("", "Orange", "Isle 1, Shelf 1"),
+          createRowItem("", "Orange", "Aisle 1, Shelf 1"),
           SizedBox(height: 10.0,),
-          createRowItem("", "Apple", "Isle 1, Shelf 1"),
+          createRowItem("", "Apple", "Aisle 1, Shelf 1"),
           SizedBox(height: 10.0,),
-          createRowItem("", "Banana", "Isle 5, Shelf 4"),
+          createRowItem("", "Banana", "Aisle 5, Shelf 4"),
           SizedBox(height: 10.0,),
-          createRowItem("", "Bread", "Isle 1, Shelf 2"),
+          createRowItem("", "Steak", "Aisle 7, Shelf 2"),
           SizedBox(height: 10.0,),
-          createRowItem("", "Popcorn", "Isle 4, Shelf 5"),
+          createRowItem("", "Pork", "Aisle 6, Shelf 4"),
           SizedBox(height: 10.0,),
-          createRowItem("", "Chocolate", "Isle 4, Shelf 2"),
+          createRowItem("", "Chicken", "Aisle 5, Shelf 2"),
+          SizedBox(height: 10.0,),
+          createRowItem("", "Milk", "Aisle 6, Shelf 2"),
         ],
       ),
     );

@@ -143,7 +143,7 @@ class _ProfileScreenState extends State<ProfilePage> {
               SizedBox(height: 4.0,),
               DescriptionBox,
               SizedBox(height: 8.0,),
-              Text('Your store is estiamted by customers:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
+              Text('Your store is estimated by customers:', style: TextStyle(color: Colors.black54, fontSize: 18.0),),
               SizedBox(height: 4.0,),
               avg_reviewBox,
               SizedBox(height: 8.0,),
@@ -167,7 +167,6 @@ class _ProfileScreenState extends State<ProfilePage> {
               SizedBox(height: 4.0,),
               websiteBox,
               SizedBox(height: 40.0,),
-              LogOutButton
             ])
         ),
 

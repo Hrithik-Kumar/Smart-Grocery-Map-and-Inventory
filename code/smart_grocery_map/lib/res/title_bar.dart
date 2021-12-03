@@ -9,14 +9,17 @@ Row makeTitleAndBackButton(String titleText, BuildContext context) {
         Navigator.pop(context, "back");
       },
     ),
-    Expanded(
-      flex: 1,
-      child: Text(
-        titleText,
-        style: titleTextStyle,
-        textAlign: TextAlign.center,
-      ),
-    )
+    Padding(
+      padding: EdgeInsets.only(left: 50.0),
+      child: Expanded(
+        flex: 1,
+        child: Text(
+          titleText,
+          style: titleTextStyle,
+          textAlign: TextAlign.left,
+        ),
+      )
+    ),
   ]);
 }
 

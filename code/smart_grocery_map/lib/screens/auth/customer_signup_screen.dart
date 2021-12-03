@@ -24,20 +24,20 @@ class CustomerSignUpScreenState extends State<CustomerSignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _obscureText = true;
   static const TextStyle titleTextStyle = TextStyle(
-    color: Colors.white,
+    color: Colors.black,
     fontSize: 28.0,
     fontWeight: FontWeight.bold,
   );
   static const TextStyle formFieldTextStyle = TextStyle(
-    color: Colors.white,
+    color: Colors.black,
     fontSize: 18.0,
   );
   static TextStyle formFieldHintTextStyle = TextStyle(
-    color: Colors.grey[400],
+    color: Colors.grey[700],
     fontSize: 12.0,
   );
   static const TextStyle formFieldLabelTextStyle = TextStyle(
-    color: Colors.white,
+    color: Colors.black,
     fontSize: 18.0,
   );
 
@@ -71,38 +71,51 @@ class CustomerSignUpScreenState extends State<CustomerSignUpScreen> {
 
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              navblue,
-              appAccent,
-            ],
-          ),
-        ),
         height: queryData.size.height,
         child: SingleChildScrollView(
           child: Form(
             key: _formKey,
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: queryData.size.width * 0.05,
-                vertical: queryData.size.height * 0.03,
-              ),
+              padding: EdgeInsets.only(right: 40.0, top: 30.0),
+              // EdgeInsets.symmetric(
+              //   horizontal: queryData.size.width * 0.05,
+              //   vertical: queryData.size.height * 0.03,
+              // ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  makeTitleAndBackButton("Customer Signup", context),
+                  const SizedBox(height: 30),
+                  
+                  Row(children: [
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back, color: yellow),
+                      onPressed: () {
+                        Navigator.pop(context, "back");
+                      },
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 50.0),
+                      child: Text(
+                          "Customer Signup",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 28.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                    ),
+                  ]),
 
                   // Wrap IconButton and TitleBar in a thing
                   // Add TextFormFields and ElevatedButton here.
                   const SizedBox(height: 20),
-
-                  TextFormField(
+                  Padding(padding: EdgeInsets.only(left: 40.0), 
+                  child: Column(children: [
+                    TextFormField(
                     controller: usernameController,
                     decoration: InputDecoration(
-                      icon: const Icon(Icons.person, color: Colors.white),
+                      icon: const Icon(Icons.person, color: Colors.black),
                       hintStyle: formFieldHintTextStyle,
                       errorStyle: formFieldHintTextStyle,
                       labelStyle: formFieldLabelTextStyle,
@@ -126,7 +139,7 @@ class CustomerSignUpScreenState extends State<CustomerSignUpScreen> {
                     enableSuggestions: false,
                     autocorrect: false,
                     decoration: InputDecoration(
-                      icon: const Icon(Icons.password, color: Colors.white),
+                      icon: const Icon(Icons.password, color: Colors.black),
                       hintStyle: formFieldHintTextStyle,
                       errorStyle: formFieldHintTextStyle,
                       labelStyle: formFieldLabelTextStyle,
@@ -150,7 +163,7 @@ class CustomerSignUpScreenState extends State<CustomerSignUpScreen> {
                       controller: emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
-                        icon: const Icon(Icons.email, color: Colors.white),
+                        icon: const Icon(Icons.email, color: Colors.black),
                         hintStyle: formFieldHintTextStyle,
                         errorStyle: formFieldHintTextStyle,
                         labelStyle: formFieldLabelTextStyle,
@@ -164,7 +177,7 @@ class CustomerSignUpScreenState extends State<CustomerSignUpScreen> {
                   TextFormField(
                     controller: firstNameController,
                     decoration: InputDecoration(
-                      icon: const Icon(Icons.face, color: Colors.white),
+                      icon: const Icon(Icons.face, color: Colors.black),
                       hintStyle: formFieldHintTextStyle,
                       errorStyle: formFieldHintTextStyle,
                       labelStyle: formFieldLabelTextStyle,
@@ -184,7 +197,7 @@ class CustomerSignUpScreenState extends State<CustomerSignUpScreen> {
                   TextFormField(
                     controller: lastNameController,
                     decoration: InputDecoration(
-                      icon: const Icon(Icons.storefront, color: Colors.white),
+                      icon: const Icon(Icons.storefront, color: Colors.black),
                       hintStyle: formFieldHintTextStyle,
                       errorStyle: formFieldHintTextStyle,
                       labelStyle: formFieldLabelTextStyle,
@@ -202,55 +215,61 @@ class CustomerSignUpScreenState extends State<CustomerSignUpScreen> {
                   ),
 
                   const SizedBox(height: 20),
+                  
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: ElevatedButton(
+                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(yellow)),
+                      onPressed: () async {
+                        // Validate returns true if the form is valid, or false otherwise.
+                        if (_formKey.currentState!.validate()) {
+                          // If the form is valid, display a snackbar. In the real world,
+                          // you'd often call a server or save the information in a database.
+                          _showSnackbar("Processing Data...");
 
-                  ElevatedButton(
-                    onPressed: () async {
-                      // Validate returns true if the form is valid, or false otherwise.
-                      if (_formKey.currentState!.validate()) {
-                        // If the form is valid, display a snackbar. In the real world,
-                        // you'd often call a server or save the information in a database.
-                        _showSnackbar("Processing Data...");
+                          String user = usernameController.text;
+                          String pass = passwordController.text;
+                          String email = emailController.text;
+                          String firstname = firstNameController.text;
+                          String lastname = lastNameController.text;
 
-                        String user = usernameController.text;
-                        String pass = passwordController.text;
-                        String email = emailController.text;
-                        String firstname = firstNameController.text;
-                        String lastname = lastNameController.text;
+                          // DELETE LATER
+                          print("Username: " + user);
+                          print("Password: " + pass);
+                          print("Email: " + email);
+                          print("First Name: " + firstname);
+                          print("Last Name: " + lastname);
 
-                        // DELETE LATER
-                        print("Username: " + user);
-                        print("Password: " + pass);
-                        print("Email: " + email);
-                        print("First Name: " + firstname);
-                        print("Last Name: " + lastname);
+                          var uri = Uri.parse(
+                              'http://10.0.2.2:8000/api/customer/signup');
+                          var request = http.MultipartRequest('POST', uri)
+                            ..fields['username'] = user
+                            ..fields['password'] = pass
+                            ..fields['email'] = email
+                            ..fields['firstname'] = firstname
+                            ..fields['lastname'] = lastname;
 
-                        var uri = Uri.parse(
-                            'http://10.0.2.2:8000/api/customer/signup');
-                        var request = http.MultipartRequest('POST', uri)
-                          ..fields['username'] = user
-                          ..fields['password'] = pass
-                          ..fields['email'] = email
-                          ..fields['firstname'] = firstname
-                          ..fields['lastname'] = lastname;
+                          http.Response response = await http.Response.fromStream(
+                              await request.send());
 
-                        http.Response response = await http.Response.fromStream(
-                            await request.send());
-
-                        if (response.statusCode == 201) {
-                          Navigator.pop(context, "Successful Registration");
-                        } else if (response.body
-                            .contains("username already exists")) {
-                          _showSnackbar(
-                              'Username already exists! Please choose another one.');
-                        } else if (response.body.contains("status")) {
-                          _showSnackbar(parseResponse(response.body));
-                        } else {
-                          _showSnackbar("Unknown Error");
+                          if (response.statusCode == 201) {
+                            Navigator.pop(context, "Successful Registration");
+                          } else if (response.body
+                              .contains("username already exists")) {
+                            _showSnackbar(
+                                'Username already exists! Please choose another one.');
+                          } else if (response.body.contains("status")) {
+                            _showSnackbar(parseResponse(response.body));
+                          } else {
+                            _showSnackbar("Unknown Error");
+                          }
                         }
-                      }
-                    },
-                    child: const Text('Register'),
+                      },
+                      child: const Text('Register'),
+                    ),
                   ),
+                  ],))
+                  
                 ],
               ),
             ),
