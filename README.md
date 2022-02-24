@@ -59,3 +59,6 @@ git checkout https://github.com/UTSCCSCC01/projectf21-team-boundarybreakers -b n
 2. Change existing functions or add new features.
 3. Test thoroughly.
 4. Submit pull request with a detailed description of changes made. 
+
+### MY Contribution
+I worked on the Backend programming using Django Framework in Python, managing SQlite database for user and company databases for data authentication and data retrieval
